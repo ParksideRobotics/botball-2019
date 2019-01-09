@@ -1,0 +1,1 @@
+scp main.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src/

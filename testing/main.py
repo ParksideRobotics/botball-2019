@@ -2,43 +2,45 @@
 import os, sys
 from wallaby import *
 
+#MOTORS
+leftMotor = 0
+rightMotor = 1
+
 def main():
-	# camera_load_config("eeee")
 	if not camera_open():
 		print "camera could not be opened"
 		return
-	camera_update()
-	highestconfidence = 0
-	while True:		
-		greatest = 0
-		print 'there are %d objects' % get_object_count(0)
-		if get_object_count(0) == 0:
-			camera_update()
+
+	while True:	
+		camera_update()
+		greatest = 0					   # Greatest Object
+		highestconfidence = 0			   # Highest confidence
+		object_count = get_object_count(0) # Object count
+		green = 0						   # Channel
+
+		if object_count == 0:
 			continue
-		for i in range(0, get_object_count(0)):
-			print 'object %d confidence: %.4f' % (i, get_object_confidence(0, i))
-			if get_object_confidence(0, i) > highestconfidence:
-				highestconfidence = get_object_confidence(0, i)
+
+		#print 'there are %d objects' % object_count
+			
+		for i in range(green, object_count):
+			#print 'object %d confidence: %.4f' % (i, get_object_confidence(green, i))
+			if get_object_confidence(green, i) > highestconfidence:
+				highestconfidence = get_object_confidence(green, i)
 				greatest = i
-                
-		# print 'object %d is greatest' % greatest
-        # print 'object x: %d y: %d' % (get_object_center_x(0, greatest), get_object_center_x(0, greatest))
-        if get_object_center_x(0, greatest) > get_camera_width()/2:
-			motor(0, 50)
-			motor(1, -50)
-        if get_object_center_x(0, greatest) < get_camera_width()/2:
-			motor(0, -50)
-			motor(1, 50)    
-                
-        if get_object_center_x(0, greatest) == get_camera_width()/2:
-			print 'object in center of screen!'
-                
-	camera_update()
-                
-    #if not camera_update():
-	#	print "camera couldn't update"
-	#	return
-	
+
+		print 'object %d is greatest' % greatest
+		print 'object x: %d y: %d' % (get_object_center_x(green, greatest), get_object_center_y(green, greatest))
+
+		if get_object_center_x(green, greatest) < (get_camera_width() / 2.0) - 20:
+			motor(leftMotor, 25)
+			off(rightMotor)
+		elif get_object_center_x(green, greatest) > (get_camera_width() / 2.0) + 20:
+			motor(rightMotor, -25)
+			off(leftMotor)
+		else:
+			ao()
+
 	camera_close()
 
 if __name__== "__main__":
