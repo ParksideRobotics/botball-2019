@@ -1,5 +1,6 @@
 #!/usr/bin/python
-import os, sys
+import os
+import sys
 from wallaby import *
 
 #MOTORS

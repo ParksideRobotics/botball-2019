@@ -1,5 +1,6 @@
 #!/usr/bin/python
-import os, sys
+import os
+import sys
 from wallaby import *
 
 def main():
@@ -21,4 +22,4 @@ def main():
 
 if __name__== "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(),"w",0)
-    main();
+    main()

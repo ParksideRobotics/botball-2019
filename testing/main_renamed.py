@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #this file was edited!
-import os, sys
+import os
+import sys
 from wallaby import *
 
 def main():
