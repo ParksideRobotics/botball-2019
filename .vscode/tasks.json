@@ -6,13 +6,13 @@
         {
             "label": "upload",
             "type": "shell",
-            "command": "scp ../main.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src/",
+            "command": "scp ../testing/main.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src/",
             "problemMatcher": []
         },
         {
             "label": "retrieve",
             "type": "shell",
-            "command": "scp root@192.168.124.1:~/Documents/KISS/drew/pynther/src/main.py ..",
+            "command": "scp root@192.168.124.1:~/Documents/KISS/drew/pynther/src/main.py ../testing/",
             "problemMatcher": []
         },
         {
