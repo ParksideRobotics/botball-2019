@@ -4,4 +4,5 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": false,
     "python.pythonPath": "C:\\Users\\SchineAJ23\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "editor.insertSpaces": false,
 }
