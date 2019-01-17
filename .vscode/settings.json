@@ -1,8 +1,8 @@
 {
     "files.eol": "\n",
-    "terminal.integrated.shell.windows": "C:\\Users\\SchineAJ23\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
+    // "terminal.integrated.shell.windows": "C:\\Users\\SchineAJ23\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": false,
-    "python.pythonPath": "C:\\Users\\SchineAJ23\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "python.pythonPath": "C:\\Python27\\python.exe",
     "editor.insertSpaces": false,
 }
