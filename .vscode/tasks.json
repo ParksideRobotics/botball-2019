@@ -6,19 +6,19 @@
         {
             "label": "upload",
             "type": "shell",
-            "command": "scp testing/camera_movement.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src/",
+            "command": "scp workshop/create.py root@192.168.125.1:~/workshop/",
             "problemMatcher": []
         },
         {
             "label": "retrieve",
             "type": "shell",
-            "command": "scp root@192.168.124.1:~/Documents/KISS/drew/pynther/src/camera_movement.py ../testing/",
+            "command": "scp root@192.168.125.1:~/Documents/KISS/drew/workshop/src/main.py /workshop/",
             "problemMatcher": []
         },
         {
             "label": "run",
             "type": "shell",
-            "command": "ssh root@192.168.124.1 Documents/KISS/drew/pynther/src/camera_movement.py",
+            "command": "ssh root@192.168.125.1 ~/Documents/KISS/drew/workshop/src/main.py",
             "problemMatcher": []
         }
     ]
