@@ -2,15 +2,7 @@
 import os
 import sys
 from wallaby import *
-
-ET = Analog(0)
-Tophat = Analog(1)
-Light = Analog(2)
-
-# Channel Names
-yellow = 0
-green  = 1
-red    = 2
+import const as x
 
 def getGreatest(channel):
 	highestconfidence = 0
@@ -33,19 +25,20 @@ def main():
 		return
 	while True:
 		camera_update()
-		if get_object_count(red) == 0:
+		if get_object_count(x.RED) == 0:
 			create_drive_direct(-100, 100) #spin left
-		greatest = getGreatest(red)
-		if get_object_confidence(red, greatest) < 0.3:
+		greatest = getGreatest(x.RED)
+		if get_object_confidence(x.RED, greatest) < 0.3:
 			continue
 
-		print "X %d, Y %d" % (get_object_center_x(red, greatest), get_object_center_y(red, greatest))
+		print "X %d, Y %d" % (get_object_center_x(x.RED, greatest), get_object_center_y(x.RED, greatest))
 		# center the object
-		centerX(red, greatest)
+		centerX(x.RED, greatest)
 
-		if get_object_bbox_height(red, greatest) > get_camera_height() * .95:
+		if get_object_bbox_height(x.RED, greatest) > get_camera_height() * .9:
 			print "Object close!"
 			create_stop()
+			break
 
 if __name__ == "__main__":
 	sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)

@@ -6,7 +6,13 @@
         {
             "label": "upload",
             "type": "shell",
-            "command": "scp workshop/create.py root@192.168.125.1:~/workshop/",
+            "command": "scp workshop/const.py root@192.168.125.1:~/workshop/",
+            "problemMatcher": []
+        },
+        {
+            "label": "upload drive",
+            "type": "shell",
+            "command": "scp workshop/drive.py root@192.168.125.1:~/workshop/",
             "problemMatcher": []
         },
         {
@@ -18,7 +24,7 @@
         {
             "label": "run",
             "type": "shell",
-            "command": "ssh root@192.168.125.1 ~/Documents/KISS/drew/workshop/src/main.py",
+            "command": "ssh root@192.168.125.1 ~/workshop/create_camera.py",
             "problemMatcher": []
         }
     ]
