@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "upload",
+            "label": "upload", // this should upload the whole project
             "type": "shell",
-            "command": "scp workshop/const.py root@192.168.125.1:~/workshop/",
+            "command": "scp -r . root@192.168.125.1:~/workshop/",
             "problemMatcher": []
         },
         {
@@ -18,7 +18,7 @@
         {
             "label": "retrieve",
             "type": "shell",
-            "command": "scp root@192.168.125.1:~/Documents/KISS/drew/workshop/src/main.py /workshop/",
+            "command": "scp -r root@192.168.125.1:~/Documents/KISS/drew/workshop/src/ .",
             "problemMatcher": []
         },
         {
