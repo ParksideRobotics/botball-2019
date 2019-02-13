@@ -8,8 +8,10 @@ import const as c
 def main():
 	w.wait_for_light(c.light.port())
 	w.shut_down_in(120)
-	# Our code!
+	# Our code! godly imo
+
 
 if __name__ == "__main__":
 	sys.stdout = os.fdopen(sys.stdout.fileno(),"w",0)
     main()
+	

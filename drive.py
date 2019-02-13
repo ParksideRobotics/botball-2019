@@ -5,12 +5,12 @@ import const as c
 def driveMotor(left, right, tick):
 	w.cmpc(left)
 	w.cmpc(right)
-	w.motor(c.leftMotor, int(left*c.motorScale))
-	w.motor(c.rightMotor, right)
+	c.leftMotor.motor(int(left*c.motorScale))
+	c.rightMotor.motor(right)
 	while w.gmpc(left) < tick or w.gmpc(right) < tick:
-		pass
-	w.off(c.leftMotor)
-	w.off(c.rightMotor)
+		continue
+	c.leftMotor.off()
+	c.rightMotor.off()
 
 def forward(speed, tick):
 	driveMotor(speed, speed, tick)
@@ -44,8 +44,8 @@ def driveUntilBlack(speed):
 		driveMotor(speed, speed, 1)
 
 def lineFollowUntilTape():
-	while w.analog(c.smallTopHat) < c.SMALL_TOPHAT_LINE:
-		if w.analog(c.largeTopHat) < c.LARGE_TOPHAT_LINE:
+	while c.smallTopHat.value() < c.SMALL_TOPHAT_LINE:
+		if c.largeTopHat.value() < c.LARGE_TOPHAT_LINE:
 			veerLeft(50, 1, 10)
-		elif w.analog(c.largeTopHat) > c.LARGE_TOPHAT_LINE:
+		elif c.largeTopHat.value() > c.LARGE_TOPHAT_LINE:
 			veerRight(50, 1, 10)

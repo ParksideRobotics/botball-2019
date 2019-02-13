@@ -35,3 +35,7 @@ SMALL_TOPHAT_LINE = 2800
 YELLOW = 0
 GREEN = 1
 RED = 2
+
+# shit for gyro
+bias = 0
+turn_conversion = 5200 # stolen
