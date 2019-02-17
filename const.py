@@ -4,14 +4,16 @@ import wallaby as w
 # motors
 rightMotor = 0
 leftMotor = 1
+spinner = 2
 motorScale = .9
 
 rightMotor = w.Motor(0)
 leftMotor = w.Motor(1)
+spinner = w.Motor(2)
 
 # servo
 servo = 0
-servo = Servo(0)
+servo = w.Servo(0)
 
 # sensors
 largeTopHat = 0

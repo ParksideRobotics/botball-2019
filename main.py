@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import sys
 
@@ -6,12 +7,13 @@ import wallaby as w
 import const as c
 
 def main():
-	w.wait_for_light(c.light.port())
-	w.shut_down_in(120)
+	# w.wait_for_light(c.light.port())
+	# w.shut_down_in(120)
 	# Our code! godly imo
+	
+	a.get_cubes()
 
 
 if __name__ == "__main__":
 	sys.stdout = os.fdopen(sys.stdout.fileno(),"w",0)
-    main()
-	
+	main()

@@ -6,25 +6,25 @@
         {
             "label": "upload", // this should upload the whole project
             "type": "shell",
-            "command": "scp -r . root@192.168.125.1:~/workshop/",
+            "command": ".vscode/uploadall.sh",
             "problemMatcher": []
         },
         {
-            "label": "upload drive",
+            "label": "upload one file",
             "type": "shell",
-            "command": "scp workshop/drive.py root@192.168.125.1:~/workshop/",
+            "command": "scp actions.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src",
             "problemMatcher": []
         },
         {
             "label": "retrieve",
             "type": "shell",
-            "command": "scp -r root@192.168.125.1:~/Documents/KISS/drew/workshop/src/ .",
+            "command": "scp -r root@192.168.125.1:~/Documents/KISS/drew/pynther .",
             "problemMatcher": []
         },
         {
             "label": "run",
             "type": "shell",
-            "command": "ssh root@192.168.125.1 ~/workshop/create_camera.py",
+            "command": "ssh root@192.168.125.1 ~/Documents/KISS/drew/pynther/src/main.py",
             "problemMatcher": []
         }
     ]
