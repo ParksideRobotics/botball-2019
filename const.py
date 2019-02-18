@@ -2,18 +2,12 @@
 import wallaby as w
 
 # motors
-rightMotor = 0
-leftMotor = 1
-spinner = 2
 motorScale = .9
-
 rightMotor = w.Motor(0)
 leftMotor = w.Motor(1)
-spinner = w.Motor(2)
+spinner = w.Motor(2) 
 
 # servo
-servo = 0
-servo = w.Servo(0)
 
 # sensors
 largeTopHat = 0
@@ -41,3 +35,6 @@ RED = 2
 # shit for gyro
 bias = 0
 turn_conversion = 5200 # stolen
+
+# shit for spinner
+distance_traveled = 0
