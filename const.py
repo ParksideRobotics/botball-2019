@@ -8,6 +8,7 @@ leftMotor = w.Motor(1)
 spinner = w.Motor(2) 
 
 # servo
+camera_servo = w.Servo(0)
 
 # sensors
 largeTopHat = 0

@@ -2,6 +2,14 @@
 import wallaby as w
 import const as c
 
+def stop():
+	c.leftMotor.off()
+	c.rightMotor.off()
+
+def freeze():
+	c.leftMotor.motor(0)
+	c.rightMotor.motor(0)
+
 def driveMotor(left, right, tick):
 	w.cmpc(left)
 	w.cmpc(right)
@@ -12,6 +20,8 @@ def driveMotor(left, right, tick):
 	c.leftMotor.off()
 	c.rightMotor.off()
 
+# @speed is speed
+# @tick is ticks
 def forward(speed, tick):
 	driveMotor(speed, speed, tick)
 
@@ -49,3 +59,22 @@ def lineFollowUntilTape():
 			veerLeft(50, 1, 10)
 		elif c.largeTopHat.value() > c.LARGE_TOPHAT_LINE:
 			veerRight(50, 1, 10)
+
+def degreeTurn(speed, degree): # had to make custom drive because driveMotor() didn't suit my needs
+	w.cmpc(c.leftMotor.port())
+	w.cmpc(c.rightMotor.port())
+	if degree < 0:
+		c.leftMotor.motor(-speed)
+		c.rightMotor.motor(speed)
+	else:
+		c.leftMotor.motor(speed)
+		c.rightMotor.motor(-speed)
+	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*5.27) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*5.27):
+		print w.gmpc(c.leftMotor.port()),
+		print w.gmpc(c.rightMotor.port())
+		continue
+	print "Done turning!"
+	c.leftMotor.motor(0)
+	c.rightMotor.motor(0)
+	c.leftMotor.off()
+	c.rightMotor.off()

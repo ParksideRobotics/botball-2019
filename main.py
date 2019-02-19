@@ -9,9 +9,9 @@ import const as c
 def main():
 	# w.wait_for_light(c.light.port())
 	# w.shut_down_in(120)
-	# Our code! godly imo
-	
-	a.get_cubes()
+
+	a.move_to_cubes() # use camera to move to cubes
+	a.get_cubes_num(5) # get 5 cubes (all cubes)
 
 
 if __name__ == "__main__":
