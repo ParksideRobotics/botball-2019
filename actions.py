@@ -38,12 +38,12 @@ def resetPosition():
 	moveMotor(c.spinner.port(), 50, c.distance_traveled*-1)
 	c.distance_traveled = 0 # remember to reset, lol
 
-def get_cubes(): # get 2 cubes
+def get_cubes(pos1, pos2): # get 2 cubes, this function is pretty much not used anymore
 	print "moving to get first cube"
-	moveDegree(c.spinner.port(), 50, int(sys.argv[1]))
+	moveDegree(c.spinner.port(), 50, pos1)
 	resetPosition()
 	print "moving to get second cube"
-	moveDegree(c.spinner.port(), 50, int(sys.argv[2]))
+	moveDegree(c.spinner.port(), 50, pos2)
 	resetPosition()
 
 def get_cubes_num(num): # scalable function for getting cubes :))
