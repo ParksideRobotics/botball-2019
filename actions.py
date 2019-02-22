@@ -43,23 +43,26 @@ def resetPosition():
 def move_to_cubes():
 	if not w.camera_open():
 		return
+	c.camera_servo.setPosition(1024)
+	c.camera_servo.enable()
+	last_seen_x = -1 # setting default value for last seen x
 	while True:
 		w.camera_update()
-		if w.get_object_count(c.YELLOW) == 0:
-			d.spinLeft(50, 1)
-			print "spinning left"
-		greatest = x.getGreatest(c.YELLOW)
-		if w.get_object_confidence(c.YELLOW, greatest) < 0.3:
+		objects = w.get_object_count(c.YELLOW)
+		if objects == 0:
+			x.scan_servo(c.YELLOW, last_seen_x)
+			continue
+		
+		best = x.getGreatest(c.YELLOW)
+		if w.get_object_confidence(c.YELLOW, best) < 0.5:
 			continue
 
-		print "X %d, Y %d" % (w.get_object_center_x(c.YELLOW, greatest), w.get_object_center_y(c.YELLOW, greatest))
-		# center the object
-		x.centerX(c.YELLOW, greatest)
+		print "Cube:",
+		print w.get_object_center_x(c.YELLOW, best),
+		print w.get_object_confidence(c.YELLOW, best)
 
-		if w.get_object_bbox_height(c.YELLOW, greatest) > w.get_camera_height() * .9:
-			print "Object close!"
-			d.stop()
-			break
+		last_seen_x = w.get_object_center_x(c.YELLOW, best) # update our last seen before we center to it, in case we move too much
+		x.centerX_servo(c.YELLOW, best) # first find it with our servo
 
 def get_cubes_num(num): # scalable function for getting cubes :))
 	degree = 130 # our starting degree for the turn
