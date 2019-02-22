@@ -64,11 +64,11 @@ def degreeTurn(speed, degree): # had to make custom drive because driveMotor() d
 	w.cmpc(c.leftMotor.port())
 	w.cmpc(c.rightMotor.port())
 	if degree < 0:
-		c.leftMotor.motor(-speed)
+		c.leftMotor.motor(speed*-1)
 		c.rightMotor.motor(speed)
 	else:
 		c.leftMotor.motor(speed)
-		c.rightMotor.motor(-speed)
+		c.rightMotor.motor(speed*-1)
 	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*5.27) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*5.27):
 		print w.gmpc(c.leftMotor.port()),
 		print w.gmpc(c.rightMotor.port())

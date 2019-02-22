@@ -35,7 +35,10 @@ RED = 2
 
 # shit for gyro
 bias = 0
-turn_conversion = 5200 # stolen
+turn_conversion = 5200
 
 # shit for spinner
 distance_traveled = 0
+
+# shit for camera
+b = False

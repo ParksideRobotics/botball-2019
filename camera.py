@@ -4,8 +4,6 @@ import const as c
 import drive as d
 import math
 
-max = false
-
 def getGreatest(channel):
 	highestconfidence = 0
 	greatest = 0
@@ -23,23 +21,23 @@ def centerX(channel, greatest):
 		c.rightMotor.off()
 		c.leftMotor.motor(50)
 
-def centerX_servo(channel, greatest):
-	if w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) - 10:
-		w.set_servo_position(0, w.get_servo_position(0)+50)
-	elif w.get_object_center_x(channel, greatest) > (w.get_camera_width() / 2.0) + 10:
-		w.set_servo_position(0, w.get_servo_position(0)-50)
+def centerX_servo(channel, greatest, tolerance, speed): # we can change tolerance
+	if w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) - tolerance:
+		w.set_servo_position(0, w.get_servo_position(0)+speed)
+	elif w.get_object_center_x(channel, greatest) > (w.get_camera_width() / 2.0) + tolerance:
+		w.set_servo_position(0, w.get_servo_position(0)-speed)
 
 def scan_servo(channel, last_seen_x):
 	if not c.camera_servo.isEnabled():
 		c.camera_servo.enable()
 
 	if last_seen_x == -1: # basically go back and forth with our position to scan for an object
-		if max:
+		if c.b:
 			c.camera_servo.setPosition(c.camera_servo.position()+1)
-		elif not max:
-			c.camera_servo.setPostition(c.camera_servo.position()-1)
+		elif not c.b:
+			c.camera_servo.setPosition(c.camera_servo.position()-1)
 		elif c.camera_servo.position() == 2047 or c.camera_servo.position() == 0:
-			max = not max
+			c.b = not c.b
 	
 	# go in the direction that we last saw the cube, so we can find it again
 	if last_seen_x < w.get_camera_width()/2:
