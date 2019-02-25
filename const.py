@@ -2,7 +2,7 @@
 import wallaby as w
 
 # motors
-motorScale = .9
+motorScale = 1
 rightMotor = w.Motor(0)
 leftMotor = w.Motor(1)
 spinner = w.Motor(2) 

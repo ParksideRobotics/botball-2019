@@ -65,22 +65,35 @@ def move_to_cubes():
 			servo_centered = True
 			break
 
-	print (c.camera_servo.position()/11.3777777778) * 5.27
-	# d.degreeTurn(10, (c.camera_servo.position()/11.3777777778) - 90)
-	exit(0)
+	print c.camera_servo.position()
 
-	#while servo_centered:
-	#	w.camera_update()
-	#	objects = w.get_object_count(c.YELLOW)
-	#	if objects == 0:
-	#		print "no objects!"
-	#		continue
-	#	best = x.getGreatest(c.YELLOW)
-	#	if w.get_object_confidence(c.YELLOW, best) < 0.5:
-	#		continue:
-	#	print "Cube:",
-	#	print w.get_object_center_x(c.YELLOW, best),
-	#	print w.get_object_confidence(c.YELLOW, best)
+	print c.camera_servo.position()/11.3777777778
+	print int(c.camera_servo.position()/11.3777777778)
+	print int((c.camera_servo.position()/11.3777777778) - 90)
+	d.degreeTurn(10, int((c.camera_servo.position()/11.3777777778) - 90))
+
+	"""
+	d.drive_noblock(25)
+	while servo_centered:
+		w.camera_update()
+		objects = w.get_object_count(c.YELLOW)
+		if object == 0:
+			print "no objects!"
+			continue
+		best = x.getGreatest(c.YELLOW)
+		if w.get_object_confidence(c.YELLOW, best) < 0.5:
+			continue
+		print "Cube:",
+		print w.get_object_center_x(c.YELLOW, best),
+		print w.get_object_confidence(c.YELLOW, best)
+		y = w.get_object_center_y(c.YELLOW, best)
+		if w.get_object_bbox_height(c.YELLOW, best) > w.get_camera_height() * .35 and y - 1< y < y + 1:
+			print "Object close!"
+			d.stop()
+			break
+		"""
+
+	exit(0) # closing program for testing
 		
 
 def get_cubes_num(num): # scalable function for getting cubes :))

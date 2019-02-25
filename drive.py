@@ -20,8 +20,6 @@ def driveMotor(left, right, tick):
 	c.leftMotor.off()
 	c.rightMotor.off()
 
-# @speed is speed
-# @tick is ticks
 def forward(speed, tick):
 	driveMotor(speed, speed, tick)
 
@@ -61,15 +59,16 @@ def lineFollowUntilTape():
 			veerRight(50, 1, 10)
 
 def degreeTurn(speed, degree): # had to make custom drive because driveMotor() didn't suit my needs
+	"""Turn robot at n speed, and x degrees"""
 	w.cmpc(c.leftMotor.port())
 	w.cmpc(c.rightMotor.port())
 	if degree < 0:
-		c.leftMotor.motor(speed*-1)
+		c.leftMotor.motor(int(speed*c.motorScale)*-1)
 		c.rightMotor.motor(speed)
 	else:
-		c.leftMotor.motor(speed)
+		c.leftMotor.motor(int(speed)*c.motorScale)
 		c.rightMotor.motor(speed*-1)
-	while w.gmpc(c.leftMotor.port()) < degree*5.27 or w.gmpc(c.rightMotor.port()) < degree*5.27:
+	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*10.388888888888888888888888888889) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*10.388888888888888888888888888889):
 		print w.gmpc(c.leftMotor.port()),
 		print w.gmpc(c.rightMotor.port())
 		continue
@@ -78,3 +77,8 @@ def degreeTurn(speed, degree): # had to make custom drive because driveMotor() d
 	c.rightMotor.motor(0)
 	c.leftMotor.off()
 	c.rightMotor.off()
+
+def drive_noblock(speed):
+	"""Only turns on drive motors. Does not stop them."""
+	c.leftMotor.motor(int(speed*c.motorScale))
+	c.rightMotor.motor(speed)
