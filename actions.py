@@ -70,9 +70,8 @@ def move_to_cubes():
 	print c.camera_servo.position()/11.3777777778
 	print int(c.camera_servo.position()/11.3777777778)
 	print int((c.camera_servo.position()/11.3777777778) - 90)
-	d.degreeTurn(10, int((c.camera_servo.position()/11.3777777778) - 90))
+	d.degreeTurn(10, int((c.camera_servo.position()/11.3777777778) - 110))
 
-	"""
 	d.drive_noblock(25)
 	while servo_centered:
 		w.camera_update()
@@ -89,11 +88,9 @@ def move_to_cubes():
 		y = w.get_object_center_y(c.YELLOW, best)
 		if w.get_object_bbox_height(c.YELLOW, best) > w.get_camera_height() * .35 and y - 1< y < y + 1:
 			print "Object close!"
+			d.forward(10, 75)
 			d.stop()
 			break
-		"""
-
-	exit(0) # closing program for testing
 		
 
 def get_cubes_num(num): # scalable function for getting cubes :))
