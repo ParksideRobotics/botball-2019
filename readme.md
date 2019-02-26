@@ -2,3 +2,4 @@
 ## People cool enough to commit here
 - Drew [@schineaj23](https://github.com/schineaj23)
 - Stefan [@ssalanski](https://github.com/ssalanski/)
+- Samad [@samadMA23](https://github.com/samadma23/)

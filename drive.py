@@ -3,28 +3,22 @@ import wallaby as w
 import const as c
 
 def stop():
-	c.leftMotor.off()
-	c.rightMotor.off()
-
-def freeze():
-	c.leftMotor.motor(0)
-	c.rightMotor.motor(0)
+	w.create_stop()
 
 def driveMotor(left, right, tick):
-	w.cmpc(left)
-	w.cmpc(right)
-	c.leftMotor.motor(int(left*c.motorScale))
-	c.rightMotor.motor(right)
-	while w.gmpc(left) < tick or w.gmpc(right) < tick:
-		continue
-	c.leftMotor.off()
-	c.rightMotor.off()
+	w.create_drive_direct(left, right)
+	w.msleep(time)
+	w.create_stop()
 
-def forward(speed, tick):
-	driveMotor(speed, speed, tick)
+def forward(speed, time):
+	w.create_drive_straight(speed)
+	w.msleep(time)
+	w.create_stop()
 
-def backward(speed, tick):
-	driveMotor(speed*-1, speed*-1, tick)
+def backward(speed, time):
+	w.create_drive_straight(speed*-1)
+	w.msleep(time)
+	w.create_stop()
 
 def spinLeft(speed, tick):
 	driveMotor(speed*-1, speed, tick)
@@ -48,37 +42,19 @@ def radiusTurn(speed, radius, tick):
 	driveMotor(speed, int((radius / (radius+5.0)*speed), tick))
 
 def driveUntilBlack(speed):
-	while w.analog(c.largeTopHat) < c.LARGE_TOPHAT_LINE:
-		driveMotor(speed, speed, 1)
+	while w.get_lfcliff_amt() < c.CREATE_LINE:
+		w.create_drive_straight(speed)
+
+def driveUntilWhite(speed):
+	while w.get_lfcliff_amt() > c.CREATE_LINE:
+		w.create_drive_straight(speed)
 
 def lineFollowUntilTape():
-	while c.smallTopHat.value() < c.SMALL_TOPHAT_LINE:
-		if c.largeTopHat.value() < c.LARGE_TOPHAT_LINE:
+	while w.get_lfcliff_amt() < c.CREATE_LINE
+		if w.get_rfcliff_amt() < c.CREATE_LINE:
 			veerLeft(50, 1, 10)
-		elif c.largeTopHat.value() > c.LARGE_TOPHAT_LINE:
+		elif w.get_rcliff_amt() > c.CREATE_LINE:
 			veerRight(50, 1, 10)
 
-def degreeTurn(speed, degree): # had to make custom drive because driveMotor() didn't suit my needs
-	"""Turn robot at n speed, and x degrees"""
-	w.cmpc(c.leftMotor.port())
-	w.cmpc(c.rightMotor.port())
-	if degree < 0:
-		c.leftMotor.motor(int(speed*c.motorScale)*-1)
-		c.rightMotor.motor(speed)
-	else:
-		c.leftMotor.motor(int(speed)*c.motorScale)
-		c.rightMotor.motor(speed*-1)
-	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*10.388888888888888888888888888889) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*10.388888888888888888888888888889):
-		print w.gmpc(c.leftMotor.port()),
-		print w.gmpc(c.rightMotor.port())
-		continue
-	print "Done turning!"
-	c.leftMotor.motor(0)
-	c.rightMotor.motor(0)
-	c.leftMotor.off()
-	c.rightMotor.off()
-
-def drive_noblock(speed):
-	"""Only turns on drive motors. Does not stop them."""
-	c.leftMotor.motor(int(speed*c.motorScale))
-	c.rightMotor.motor(speed)
+def degreeTurn(speed, degree): 
+	w.create_spin_block(speed, degree)

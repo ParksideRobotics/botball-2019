@@ -7,11 +7,15 @@ import wallaby as w
 import const as c
 
 def main():
+        if not w.create_connect():
+                return
+        w.create_full()
 	# w.wait_for_light(c.light.port())
 	# w.shut_down_in(120)
 
-	a.move_to_cubes() # use camera to move to cubes
-	a.get_cubes_num(5) # get 5 cubes (all cubes)
+	a.move_out_starbucks() # move out of start box
+
+	w.create_disconnect()
 
 
 if __name__ == "__main__":

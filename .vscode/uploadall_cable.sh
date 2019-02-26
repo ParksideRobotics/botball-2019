@@ -1,13 +1,9 @@
-echo Uploading 0/6
+echo Uploading 0/4
 scp main.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
-echo Uploading 1/6
+echo Uploading 1/4
 scp drive.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
-echo Uploading 2/6
-scp gdrive.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
-echo Uploading 3/6
+echo Uploading 2/4
 scp const.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
-echo Uploading 4/6
+echo Uploading 3/4
 scp actions.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
-echo Uploading 5/6
-scp camera.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
 echo UPLOADED ALL
