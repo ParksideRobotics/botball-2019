@@ -7,13 +7,14 @@ import wallaby as w
 import const as c
 
 def main():
-        if not w.create_connect():
+        if w.create_connect():
                 return
         w.create_full()
 	# w.wait_for_light(c.light.port())
 	# w.shut_down_in(120)
 
 	a.move_out_starbucks() # move out of start box
+	a.follow_gray_line()
 
 	w.create_disconnect()
 
