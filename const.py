@@ -19,6 +19,6 @@ smallTopHat = w.Analog(2)
 light = w.Analog(3) # Not actually on robot yet
 
 # Line
-CREATE_LINE = 2500
-LARGE_TOPHAT_LINE = 1800
-SMALL_TOPHAT_LINE = 2800
+CREATE_GREY = 2500
+CREATE_BLACK = 1800
+CREATE_WHITE = 2800

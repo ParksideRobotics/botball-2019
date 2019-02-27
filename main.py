@@ -15,7 +15,7 @@ def main():
 
 	a.move_out_starbucks() # move out of start box
 	a.follow_gray_line()
-
+	
 	w.create_disconnect()
 
 
