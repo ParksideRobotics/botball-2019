@@ -110,4 +110,3 @@ def move_to_med(): # move to medical center
 	# this code has not been tested yet
 	d.degreeTurn(50, 90)
 	d.forward(50, 5200)
-	
