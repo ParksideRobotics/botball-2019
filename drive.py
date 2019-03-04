@@ -11,11 +11,11 @@ def freeze():
 	c.rightMotor.motor(0)
 
 def driveMotor(left, right, tick):
-	w.cmpc(left)
-	w.cmpc(right)
+	c.leftMotor.clearPositionCounter()
+	c.rightMotor.clearPositionCounter()
 	c.leftMotor.motor(int(left*c.motorScale))
 	c.rightMotor.motor(right)
-	while w.gmpc(left) < tick or w.gmpc(right) < tick:
+	while w.gmpc(c.leftMotor.port()) < tick or w.gmpc(c.rightMotor.port()) < tick:
 		continue
 	c.leftMotor.off()
 	c.rightMotor.off()
