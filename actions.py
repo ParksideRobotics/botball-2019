@@ -19,10 +19,10 @@ def move_out_starbucks():
         #d.spinLeft(100, 2500)
 
         
-def follow_gray_line():        
+def follow_gray_line(dist):        
         w.set_create_distance(0)
-                                                                                                                                             while w.get_create_distance() < int(sys.argv[1]): # using argv for testing, NOT FINAL CODE
-                #print w.get_create_lcliff_amt()
+        	while w.get_create_distance() < dist:
+				#print w.get_create_lcliff_amt()
                 print w.get_create_distance()
                 if w.get_create_rfcliff_amt() < c.CREATE_BLACK:
                         w.create_drive_direct(100, 0)
@@ -30,8 +30,9 @@ def follow_gray_line():
                         w.create_drive_direct(0, 100)
                 print "Done! on the line"      
 
-def follow_black_line():
+def follow_black_line(dist):
         w.set_create_distance(0)
+		while w.get_create_distance() < dist:
                 print w.get_create_distance
                 if e.get_create_rcliff_amt() > c.CREATE_BLACK:
                         w.create_drive_direct(0,100)

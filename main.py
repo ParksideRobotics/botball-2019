@@ -14,8 +14,10 @@ def main():
 	# w.shut_down_in(120)
 
 	a.move_out_starbucks() # move out of start box
-	a.follow_gray_line()\
-        a.follow_black_line()\
+	# ARGV PARAMETERS ARE NOT FINAL CODE!
+	a.follow_gray_line(int(sys.argv[1])) # putting this in so we can play with values 
+        a.follow_black_line(int(sys.argv[2])) # putting this in so we can play with values
+
 	
 	w.create_disconnect()
 
