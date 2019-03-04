@@ -33,6 +33,12 @@ def follow_gray_line():
 def follow_black_line():
         w.set_create_distance(0)
                 print w.get_create_distance
+                if e.get_create_rcliff_amt() > c.CREATE_BLACK:
+                        w.create_drive_direct(0,100)
+                elif w.get_create_lfcliff_amt() > c.CREATE_BLACK:
+                        w.create_drive_direct(100,0)
+                print "samadisnumber1"
+                
 
  
 
