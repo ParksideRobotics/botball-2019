@@ -34,9 +34,9 @@ def follow_black_line(dist):
         w.set_create_distance(0)
 		while w.get_create_distance() < dist:
             print w.get_create_distance
-            if w.get_create_rcliff_amt() > c.CREATE_BLACK:
+            if w.get_create_rcliff_amt() < c.CREATE_BLACK:
                 w.create_drive_direct(0,100)
-            elif w.get_create_lfcliff_amt() > c.CREATE_BLACK:
+            elif w.get_create_lfcliff_amt() < c.CREATE_BLACK:
                 w.create_drive_direct(100,0)
             print "samadisnumber1"
                 
