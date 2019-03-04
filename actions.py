@@ -25,20 +25,20 @@ def follow_gray_line(dist):
 				#print w.get_create_lcliff_amt()
                 print w.get_create_distance()
                 if w.get_create_rfcliff_amt() < c.CREATE_BLACK:
-                        w.create_drive_direct(100, 0)
+                    w.create_drive_direct(100, 0)
                 elif w.get_create_lfcliff_amt() < c.CREATE_BLACK:
-                        w.create_drive_direct(0, 100)
+                    w.create_drive_direct(0, 100)
                 print "Done! on the line"      
 
 def follow_black_line(dist):
         w.set_create_distance(0)
 		while w.get_create_distance() < dist:
-                print w.get_create_distance
-                if e.get_create_rcliff_amt() > c.CREATE_BLACK:
-                        w.create_drive_direct(0,100)
-                elif w.get_create_lfcliff_amt() > c.CREATE_BLACK:
-                        w.create_drive_direct(100,0)
-                print "samadisnumber1"
+            print w.get_create_distance
+            if w.get_create_rcliff_amt() > c.CREATE_BLACK:
+                w.create_drive_direct(0,100)
+            elif w.get_create_lfcliff_amt() > c.CREATE_BLACK:
+                w.create_drive_direct(100,0)
+            print "samadisnumber1"
                 
 
  
