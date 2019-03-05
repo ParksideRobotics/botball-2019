@@ -4,7 +4,7 @@ import wallaby as w
 # motors
 rightMotor = 0
 leftMotor = 1
-motorScale = .9
+motorScale = 1
 
 # servo
 servo = 0

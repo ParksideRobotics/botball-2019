@@ -45,7 +45,7 @@ def find_burning_center():
 	c.camera_servo.setPosition(1800) # set the servo so It can see both centers, but not cubes
 	if not w.camera_open():
 		return
-	while True:
+	while c.burning_center == -1:
 		w.camera_update()
 		best = x.getGreatest(c.BURNING)
 		if w.get_object_confidence(c.BURNING, best) < 0.5:
@@ -60,12 +60,13 @@ def find_burning_center():
 			print "Far medical center"
 			c.burning_center = 1
 			break
+	w.camera_close()
 
 def move_to_cubes():
 	if not w.camera_open():
 		return
 	servo_centered = False
-	c.camera_servo.setPosition(1024)
+	c.camera_servo.setPosition(900)
 	c.camera_servo.enable()
 	last_seen_x = -1 # setting default value for last seen x
 	while not servo_centered: # first center the 
@@ -83,20 +84,43 @@ def move_to_cubes():
 		print w.get_object_confidence(c.YELLOW, best)
 		last_seen_x = w.get_object_center_x(c.YELLOW, best) # update our last seen before we center to it, in case we move too much
 		x.centerX_servo(c.YELLOW, best, 10, 50) # first find it with our servo
-		if (w.get_camera_width()/2)-10 < w.get_object_center_x(c.YELLOW, best) < (w.get_camera_width()/2)+10:
+		if (w.get_camera_width()/2)-25 < w.get_object_center_x(c.YELLOW, best) < (w.get_camera_width()/2)+10:
 			servo_centered = True
 			break
 
 	print c.camera_servo.position()
-
 	print c.camera_servo.position()/11.3777777778
 	print int(c.camera_servo.position()/11.3777777778)
 	print int((c.camera_servo.position()/11.3777777778) - 90)
 	d.forward(50, 2100)
-	d.degreeTurn(10, int((c.camera_servo.position()/11.3777777778) - 110))
-	c.camera_servo.setPosition(1024) # reset camera to default position
+	d.degreeTurn(10, int((c.camera_servo.position()/11.3777777778) - 75))
+	c.camera_servo.setPosition(900) # reset camera to default position
+	
+	moveDegree(c.spinner.port(), 50, -90) # set our sweeper to default pos
+	c.distance_traveled = 0  # clear distance
 
-	exit(0)
+	d.drive_noblock(50)
+	at_cubes = False
+	while not at_cubes:
+		w.camera_update()
+		objects = w.get_object_count(c.YELLOW)
+		#if objects == 0:
+		#	print "no objects!"
+		#	continue
+		best = x.getGreatest(c.YELLOW)
+		if objects == 0 or w.get_object_confidence(c.YELLOW, best) < 0.3: # if we can't see it anymore
+			at_cubes = True
+			d.stop()
+			d.forward(50, 500)
+			break
+		elif w.get_object_confidence(c.YELLOW, best) < 0.5:
+			continue
+		
+		print "Cube:",
+		print w.get_object_center_x(c.YELLOW, best),
+		print w.get_object_confidence(c.YELLOW, best)
+
+	w.camera_close()
 		
 def get_cubes_num(num): # scalable function for getting cubes :))
 	degree = 130 # our starting degree for the turn

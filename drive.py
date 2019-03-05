@@ -13,8 +13,8 @@ def freeze():
 def driveMotor(left, right, tick):
 	c.leftMotor.clearPositionCounter()
 	c.rightMotor.clearPositionCounter()
-	c.leftMotor.motor(int(left*c.motorScale))
-	c.rightMotor.motor(right)
+	c.leftMotor.motor(left)
+	c.rightMotor.motor(int(right*c.motorScale))
 	while w.gmpc(c.leftMotor.port()) < tick or w.gmpc(c.rightMotor.port()) < tick:
 		continue
 	c.leftMotor.off()
@@ -63,11 +63,11 @@ def degreeTurn(speed, degree): # had to make custom drive because driveMotor() d
 	w.cmpc(c.leftMotor.port())
 	w.cmpc(c.rightMotor.port())
 	if degree < 0:
-		c.leftMotor.motor(int(speed*c.motorScale)*-1)
-		c.rightMotor.motor(speed)
+		c.leftMotor.motor(speed*-1)
+		c.rightMotor.motor(int(speed*c.motorScale))
 	else:
-		c.leftMotor.motor(int(speed)*c.motorScale)
-		c.rightMotor.motor(speed*-1)
+		c.leftMotor.motor(speed)
+		c.rightMotor.motor(int(speed*c.motorScale)*-1)
 	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*10.388888888888888888888888888889) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*10.388888888888888888888888888889):
 		print w.gmpc(c.leftMotor.port()),
 		print w.gmpc(c.rightMotor.port())
