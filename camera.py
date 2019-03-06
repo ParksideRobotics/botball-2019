@@ -7,19 +7,23 @@ import math
 def getGreatest(channel):
 	highestconfidence = 0
 	greatest = 0
-	for i in range(channel, w.get_object_count(channel)):
+	for i in range(0, w.get_object_count(channel)):
 			if w.get_object_confidence(channel, i) > highestconfidence:
 				highestconfidence = w.get_object_confidence(channel, i)
 				greatest = i
 	return greatest
 
 def centerX(channel, greatest):
-	if w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) - 20:
-		c.leftMotor.off()
-		c.rightMotor.motor(50)
-	elif w.get_object_center_x(channel, greatest) > (w.get_camera_width() / 2.0) + 20:
-		c.rightMotor.off()
-		c.leftMotor.motor(50)
+	if w.get_object_center_x(channel, greatest) > (w.get_camera_width() / 2.0) - 5:
+		c.leftMotor.motor(10)
+		c.rightMotor.motor(30)
+		print w.get_object_center_x(channel, greatest),
+		print "Turning left!"
+	elif w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) + 5:
+		c.rightMotor.motor(10)
+		c.leftMotor.motor(30)
+		print w.get_object_center_x(channel, greatest),
+		print "Turning right!"
 
 def centerX_servo(channel, greatest, tolerance, speed): # we can change tolerance
 	if w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) - tolerance:

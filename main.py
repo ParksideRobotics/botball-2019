@@ -12,7 +12,7 @@ def main():
 
 	#a.find_burning_center()
 	a.move_to_cubes() # use camera to move to cubes
-	#a.get_cubes_num(5) # get 5 cubes (all cubes)
+	a.get_cubes_num(5) # get 5 cubes (all cubes)
 
 
 if __name__ == "__main__":
