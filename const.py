@@ -16,7 +16,8 @@ pushButton = w.Digital(0)
 largeTopHat = w.Analog(0)
 rangeFinder = w.Analog(1)
 smallTopHat = w.Analog(2)
-light = w.Analog(3) # Not actually on robot yet
+light = w.Analog(3)  # Not actually on robot yet
+
 
 # Line
 CREATE_GREY = 2500
