@@ -24,13 +24,13 @@
         {
             "label": "retrieve",
             "type": "shell",
-            "command": "scp -r root@192.168.125.1:~/Documents/KISS/drew/pynther .",
+            "command": "scp -r root@192.168.125.1:~/Documents/KISS/drew/pynther/src .",
             "problemMatcher": []
         },
         {
-            "label": "run",
+            "label": "connect",
             "type": "shell",
-            "command": "ssh root@192.168.125.1 ~/Documents/KISS/drew/pynther/src/main.py",
+            "command": "ssh root@192.168.125.1",
             "problemMatcher": []
         }
     ]

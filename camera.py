@@ -48,4 +48,3 @@ def scan_servo(channel, last_seen_x):
 		c.camera_servo.setPosition(c.camera_servo.position()-1)
 	elif last_seen_x > w.get_camera_width()/2:
 		c.camera.servo.setPosition(c.camera_servo.position()+1)
-		

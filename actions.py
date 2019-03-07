@@ -37,10 +37,7 @@ def moveDegree(motor, power, degree): # set the motor to a degree, like a servo
 	w.off(motor)
 
 def isOnLine(sensor, line):
-	if w.analog(sensor) > line:
-		return True
-	else:
-		return False
+	return True if w.analog(sensor) > line else False
 
 def resetPosition():
 	moveMotor(c.spinner.port(), 50, c.distance_traveled*-1)
@@ -48,7 +45,7 @@ def resetPosition():
 
 def find_burning_center():
 	c.camera_servo.enable()
-	c.camera_servo.setPosition(1300) # set the servo so It can see both centers, but not cubes
+	c.camera_servo.setPosition(1500) # set the servo so It can see both centers, but not cubes
 	if not w.camera_open():
 		return
 	while c.burning_center == -1:
@@ -58,11 +55,11 @@ def find_burning_center():
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 60 < x_pos < 80:
+		if 10 < x_pos < 30:
 			print "Close medical center"
 			c.burning_center = 0
 			break
-		elif 140 < x_pos < 170:
+		elif 60 < x_pos < 100:
 			print "Far medical center"
 			c.burning_center = 1
 			break
@@ -151,6 +148,5 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 		degree -= 20
 
 def move_to_med(): # move to medical center
-	# this code has not been tested yet
-	d.degreeTurn(50, 90)
-	d.forward(50, 5200)
+	d.degreeTurn(50, -90)
+	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1 if c.burning_center == 0 else 2))

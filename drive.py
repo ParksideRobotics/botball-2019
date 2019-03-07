@@ -83,3 +83,14 @@ def drive_noblock(speed):
 	c.leftMotor.motor(int(speed*c.motorScale))
 	c.rightMotor.motor(speed)
 	
+def skipLine(speed, sensor, line, lines):
+	"""Speed: How fast we want to go\n
+	Sensor: Which tophat to use\n
+	Line: Which line to use\n
+	Lines: how many we want to skip"""
+	for i in range(0, lines):
+		while w.analog(sensor) > line: # is on line
+			drive_noblock(speed)
+		while w.analog(sensor) < line: # isnt on line
+			drive_noblock(speed)
+	stop()
