@@ -13,6 +13,7 @@ def centerX(channel, greatest):
 		set_servo_position(0, get_servo_position(0)-50)
 
 def centerX_with_complicated_math(best):
+	global previous
 	x = get_object_center_x(0, best)
 	y = get_object_center_y(0, best)
 

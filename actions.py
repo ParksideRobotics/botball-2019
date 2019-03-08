@@ -91,12 +91,13 @@ def move_to_cubes():
 			servo_centered = True
 			break
 
-	print c.camera_servo.position()
-	print c.camera_servo.position()/11.3777777778
-	print int(c.camera_servo.position()/11.3777777778)
-	print int((c.camera_servo.position()/11.3777777778) - 90)
+	servo_pos = c.camera_servo.position()
+	print servo_pos
+	print servo_pos/11.3777777778
+	print int(servo_pos/11.3777777778)
+	print int((servo_pos/11.3777777778) - 90)
 	d.forward(50, 2100)
-	d.degreeTurn(50, int((c.camera_servo.position()/11.3777777778) - 75))
+	d.degreeTurn(50, int((servo_pos/11.3777777778) - 75))
 	c.camera_servo.setPosition(900) # reset camera to default position
 	
 	moveDegree(c.spinner.port(), 50, -90) # set our sweeper to default pos
@@ -114,13 +115,13 @@ def move_to_cubes():
 
 		x.centerX(c.YELLOW, best)
 		if isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == -1:
-			ol = 0
+			ol += 1
 			print "Hitting first line"
 		elif not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 0:
-			ol = 1
+			ol += 1
 			print "Passed First line"
 		elif isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 1:
-			ol = 2
+			ol += 1
 			print "Hitting second line"
 		elif not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
 			w.ao()
@@ -149,4 +150,4 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 
 def move_to_med(): # move to medical center
 	d.degreeTurn(50, -90)
-	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1 if c.burning_center == 0 else 2))
+	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1 if c.burning_center==0 else 2))
