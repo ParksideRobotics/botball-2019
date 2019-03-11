@@ -3,24 +3,28 @@ import wallaby as w
 import const as c
 
 def stop():
+	"""Turns off both drive motors"""
 	c.leftMotor.off()
 	c.rightMotor.off()
 
 def freeze():
+	"""Freezes both drive motors"""
 	c.leftMotor.motor(0)
 	c.rightMotor.motor(0)
 
 def driveMotor(left, right, tick):
+	"""Uses ticks to move motors"""
 	c.leftMotor.clearPositionCounter()
 	c.rightMotor.clearPositionCounter()
 	c.leftMotor.motor(left)
 	c.rightMotor.motor(int(right*c.motorScale))
-	while w.gmpc(c.leftMotor.port()) < tick or w.gmpc(c.rightMotor.port()) < tick:
+	while abs(w.gmpc(c.leftMotor.port())) < abs(tick) or abs(w.gmpc(c.rightMotor.port())) < abs(tick):
 		continue
 	c.leftMotor.off()
 	c.rightMotor.off()
 
 def forward(speed, tick):
+	"""Moves robot forward at a speed, and for a certain number of ticks"""
 	driveMotor(speed, speed, tick)
 
 def backward(speed, tick):

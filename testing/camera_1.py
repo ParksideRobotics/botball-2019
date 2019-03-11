@@ -3,9 +3,6 @@ import os
 import sys
 import math
 from wallaby import *
-
-previous = 0
-
 def centerX(channel, greatest):
 	if get_object_center_x(channel, greatest) < (get_camera_width() / 2.0) - 10:
 		set_servo_position(0, get_servo_position(0)+50)
@@ -37,6 +34,7 @@ def centerX_with_complicated_math(best):
 	#	pass
 
 def main():
+	previous = 0
 	s = Servo(0)
 	if not camera_open():
 		return

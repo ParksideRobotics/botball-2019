@@ -150,4 +150,5 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 
 def move_to_med(): # move to medical center
 	d.degreeTurn(50, -90)
-	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1 if c.burning_center==0 else 2))
+	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
+	d.backward(50, 1000)

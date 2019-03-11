@@ -7,8 +7,8 @@ import wallaby as w
 import const as c
 
 def main():
-	# w.wait_for_light(c.light.port())
-	# w.shut_down_in(120)
+	#w.wait_for_light(c.light.port())
+	#w.shut_down_in(120)
 
 	a.find_burning_center()
 	a.move_to_cubes() # use camera to move to cubes

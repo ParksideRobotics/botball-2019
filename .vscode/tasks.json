@@ -18,7 +18,7 @@
         {
             "label": "upload one file",
             "type": "shell",
-            "command": "scp actions.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src",
+            "command": "scp ${fileBasename} root@192.168.125.1:~/Documents/KISS/drew/pynther/src",
             "problemMatcher": []
         },
         {
