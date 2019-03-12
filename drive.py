@@ -14,7 +14,8 @@ def clear_ticks():
 def driveMotor(left, right, ticks):
     clear_ticks()
     w.create_drive_direct(left, right)
-    while w.get_create_distance() < ticks:
+    while abs(w.get_create_distance()) < abs(ticks):
+        print w.get_create_distance()
         continue
     w.create_stop()
 
