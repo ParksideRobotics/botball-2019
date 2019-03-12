@@ -2,6 +2,9 @@
 import wallaby as w
 import const as c
 
+RIGHT_TURN = 0
+LEFT_TURN = 1
+
 def stop():
 	"""Turns off both drive motors"""
 	c.leftMotor.off()
@@ -72,7 +75,7 @@ def degreeTurn(speed, degree): # had to make custom drive because driveMotor() d
 	else:
 		c.leftMotor.motor(speed)
 		c.rightMotor.motor(int(speed*c.motorScale)*-1)
-	while abs(w.gmpc(c.leftMotor.port())) < abs(degree*10.388888888888888888888888888889) or abs(w.gmpc(c.rightMotor.port())) < abs(degree*10.388888888888888888888888888889):
+	while abs(w.gmpc(c.leftMotor.port())) < abs(c.DRIVE_DEG2TICK(degree)) or abs(w.gmpc(c.rightMotor.port())) < abs(c.DRIVE_DEG2TICK(degree)):
 		print w.gmpc(c.leftMotor.port()),
 		print w.gmpc(c.rightMotor.port())
 		continue
@@ -86,6 +89,13 @@ def drive_noblock(speed):
 	"""Only turns on drive motors. Does not stop them."""
 	c.leftMotor.motor(int(speed*c.motorScale))
 	c.rightMotor.motor(speed)
+
+def driveMotorA(left, right):
+	"""DRIVE MOTOR THAT ONLY TURNS ON MOTORS"""
+	if left != 0:
+		c.leftMotor.motor(left)
+	if right != 0:
+		c.rightMotor.motor(right)
 	
 def skipLine(speed, sensor, line, lines):
 	"""Speed: How fast we want to go\n
@@ -97,4 +107,11 @@ def skipLine(speed, sensor, line, lines):
 			drive_noblock(speed)
 		while w.analog(sensor) < line: # isnt on line
 			drive_noblock(speed)
+	stop()
+
+def turnUntilLine(speed, direction, sensor, line):
+	(driveMotorA(speed, speed*-1), driveMotorA(speed*-1, speed))[direction]
+	while w.analog(sensor) > line: # not on line
+		continue
+	freeze()
 	stop()

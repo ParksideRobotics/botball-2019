@@ -35,3 +35,11 @@ distance_traveled = 0
 # shit for camera
 b = False
 burning_center = -1 # default value is -1, Close is 0, far is 1
+
+# other shit
+def DRIVE_DEG2TICK(n):
+	return n*10.388888888888888888888888888889
+def SERVO_TICK2DEG(n):
+	return n/11.3777777778
+def MOTOR_DEG2TICK(n):
+	return n*5.27

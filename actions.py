@@ -25,7 +25,7 @@ def moveDegree(motor, power, degree): # set the motor to a degree, like a servo
 		w.motor(motor, -power)
 	else:
 		w.motor(motor, power)
-	goal = degree*5.27
+	goal = c.MOTOR_DEG2TICK(degree)
 	while abs(w.gmpc(motor)) < abs(goal):
 		print w.gmpc(motor)
 		continue
@@ -55,7 +55,7 @@ def find_burning_center():
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 10 < x_pos < 30:
+		if 10 < x_pos < 40:
 			print "Close medical center"
 			c.burning_center = 0
 			break
@@ -93,11 +93,11 @@ def move_to_cubes():
 
 	servo_pos = c.camera_servo.position()
 	print servo_pos
-	print servo_pos/11.3777777778
-	print int(servo_pos/11.3777777778)
-	print int((servo_pos/11.3777777778) - 90)
+	print c.SERVO_TICK2DEG(servo_pos)
+	print int(c.SERVO_TICK2DEG(servo_pos))
+	print int((c.SERVO_TICK2DEG(servo_pos)) - 90)
 	d.forward(50, 2100)
-	d.degreeTurn(50, int((servo_pos/11.3777777778) - 75))
+	d.degreeTurn(50, int(c.SERVO_TICK2DEG(servo_pos) - 75))
 	c.camera_servo.setPosition(900) # reset camera to default position
 	
 	moveDegree(c.spinner.port(), 50, -90) # set our sweeper to default pos
@@ -150,5 +150,15 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 
 def move_to_med(): # move to medical center
 	d.degreeTurn(50, -90)
+	#while not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
+	#	c.leftMotor.motor(-50)
+	#	c.rightMotor.motor(50)
+	#while isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
+	#	c.leftMotor.motor(-50)
+	#	c.rightMotor.motor(50)
+	#d.freeze()
+	#d.stop()
+	
+	#d.turnUntilLine(50, d.RIGHT_TURN, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE)
 	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
 	d.backward(50, 1000)
