@@ -110,7 +110,10 @@ def skipLine(speed, sensor, line, lines):
 	stop()
 
 def turnUntilLine(speed, direction, sensor, line):
-	(driveMotorA(speed, speed*-1), driveMotorA(speed*-1, speed))[direction]
+	if direction:
+		driveMotorA(speed*-1, speed)
+	else:
+		driveMotorA(speed*-1, speed)
 	while w.analog(sensor) > line: # not on line
 		continue
 	freeze()
