@@ -22,14 +22,14 @@ def main():
     # ARGV PARAMETERS ARE NOT FINAL CODE!
     # putting this in so we can play with values
     print 'following gray line'
-    a.follow_gray_line(int(sys.argv[1]))
+    a.follow_gray_line(630)
 
     print 'turning around'
     a.move_to_black()
 
     # putting this in so we can play with values
     print 'following black line'
-    a.follow_black_line(int(sys.argv[2]))
+    a.follow_black_line(230)
 
     w.create_disconnect()
 

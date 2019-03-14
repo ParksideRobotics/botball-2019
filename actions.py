@@ -5,12 +5,10 @@ import drive as d
 import math
 import sys
 
-
 def skip_line(speed):
     d.driveUntilBlack(speed)
     d.driveUntilWhite(speed)
     w.create_stop()
-
 
 def move_out_starbucks():
     """Leave starbucks to get to the main tracking line"""
@@ -29,14 +27,14 @@ def follow_gray_line(dist):
         elif w.get_create_lfcliff_amt() < c.CREATE_GREY:
             w.create_drive_direct(10, 100)
             print "Done! on the line"
-    while w.get_create_rfcliff_amt() > c.CREATE_BLACK:
-        w.create_drive_direct(0, 100)
+   # while w.get_create_rfcliff_amt() > c.CREATE_BLACK:
+   #     w.create_drive_direct(0, 100)
     w.create_stop()
 
 def move_to_black():
-    d.spinRight(100,375)
-    w.create_spin_block()
-    exit(0)
+     # d.spinRight(100,375)
+     # w.create_spin_block()
+    d.degreeTurn(100, -90)
 
 def follow_black_line(dist):
     w.set_create_distance(0)
@@ -48,9 +46,6 @@ def follow_black_line(dist):
             w.create_drive_direct(100, 50)
             
         # print "samadisnumber1"
-        
-
         # ssh root@192.168.125.1
         # cd pynther
         # ./main.py
-        
