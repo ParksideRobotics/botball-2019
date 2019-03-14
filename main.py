@@ -31,9 +31,9 @@ def main():
     print 'following black line'
     a.follow_black_line(int(sys.argv[2]))
 
-    w.create_disconnect(    )
+    w.create_disconnect()
 
-    
+
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)
     main()

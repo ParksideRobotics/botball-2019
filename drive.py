@@ -83,4 +83,10 @@ def lineFollowUntilTape(line):
 
 
 def degreeTurn(speed, degree):
-    w.create_spin_block(speed, degree)
+    w.set_create_total_angle(0)
+    w.create_spin_CCW(speed)
+    while w.get_create_total_angle() < degree*1.15:
+        continue
+    w.create_stop()
+
+

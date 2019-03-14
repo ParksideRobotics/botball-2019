@@ -34,7 +34,8 @@ def follow_gray_line(dist):
     w.create_stop()
 
 def move_to_black():
-    d.pivotRight(100,375)
+    d.spinRight(100,375)
+    w.create_spin_block()
     exit(0)
 
 def follow_black_line(dist):
@@ -49,7 +50,7 @@ def follow_black_line(dist):
         # print "samadisnumber1"
         
 
-        #192.168.125.1
+        # ssh root@192.168.125.1
         # cd pynther
-        # cd main.py
+        # ./main.py
         
