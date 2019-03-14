@@ -113,7 +113,7 @@ def turnUntilLine(speed, direction, sensor, line):
 	if direction:
 		driveMotorA(speed*-1, speed)
 	else:
-		driveMotorA(speed*-1, speed)
+		driveMotorA(speed, speed*-1)
 	while w.analog(sensor) > line: # not on line
 		continue
 	freeze()

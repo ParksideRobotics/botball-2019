@@ -55,7 +55,7 @@ def find_burning_center():
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 10 < x_pos < 40:
+		if 10 < x_pos < 50:
 			print "Close medical center"
 			c.burning_center = 0
 			break
@@ -110,10 +110,16 @@ def move_to_cubes():
 		objects = w.get_object_count(c.YELLOW)
 		if objects == 0:
 			print "no objects!"
+			if ol == 2:
+				w.ao()
+				at_cubes = True
+				print "No objects, but passed line!"
+				break
 			continue
 		best = x.getGreatest(c.YELLOW)
 
 		x.centerX(c.YELLOW, best)
+		print ol,
 		if isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == -1:
 			ol += 1
 			print "Hitting first line"
@@ -139,9 +145,9 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 	degree = 130 # our starting degree for the turn
 	for i in range(num):
 		if i % 2 == 0:
-			moveDegree(c.spinner.port(), 50, degree)
+			moveDegree(c.spinner.port(), 50, degree*.8)
 			resetPosition()
-			print "FORWARD %d degrees on cube %d" % (degree, i)
+			print "FORWARD %d degrees on cube %d" % (degree*.8, i)
 		elif i % 2 == 1:
 			moveDegree(c.spinner.port(), 50, -degree)
 			resetPosition()

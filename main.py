@@ -11,7 +11,7 @@ def main():
 	#w.shut_down_in(120)
 
 	a.find_burning_center()
-	a.move_to_cubes() # use camera to move to cubes
+	a.move_to_cubes() # use camera to move to cubesS
 	a.get_cubes_num(5) # get 5 cubes (all cubes)
 	a.move_to_med()
 
