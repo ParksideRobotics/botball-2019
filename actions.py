@@ -155,7 +155,7 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 		degree -= 20
 
 def move_to_med(): # move to medical center
-	d.degreeTurn(50, -90)
+	d.degreeTurn(50, (-70, -95)[c.burning_center])
 	#while not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
 	#	c.leftMotor.motor(-50)
 	#	c.rightMotor.motor(50)
@@ -166,5 +166,6 @@ def move_to_med(): # move to medical center
 	#d.stop()
 	
 	#d.turnUntilLine(50, d.RIGHT_TURN, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE)
-	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
-	d.backward(50, 1000)
+	d.skipLine(100, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
+	d.forward(100, 1000)
+	d.backward(100, 2000)
