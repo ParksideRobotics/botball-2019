@@ -4,8 +4,8 @@ cache:
   directories:
     - /libwallaby # cache libwallaby
 before_install:
-  - chmod +x get-deps.sh
-  - ./get-deps.sh
+  - chmod +x .build/get-deps.sh
+  - .build/get-deps.sh
 script:
   - rm wallaby.py # Remove our local copy of wallaby.py
   - python .build/add_path.py # Add wallaby.py (from libwallaby) to PATH
