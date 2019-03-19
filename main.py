@@ -8,6 +8,7 @@ import const as c
 import drive as d
 
 
+
 def main():
     if w.create_connect():
         return
@@ -19,8 +20,6 @@ def main():
     print 'moving out of the starting box'
     a.move_out_starbucks()  # move out of start box
 
-    # ARGV PARAMETERS ARE NOT FINAL CODE!
-    # putting this in so we can play with values
     print 'following gray line'
     a.follow_gray_line(630)
 
@@ -30,6 +29,9 @@ def main():
     # putting this in so we can play with values
     print 'following black line'
     a.follow_black_line(230)
+     
+    print 'moving claw'
+    a.move_claw(500) # put this in for testing
 
     w.create_disconnect()
 

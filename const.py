@@ -1,10 +1,11 @@
 #!/usr/bin/python
 import wallaby as w
 
-# motors
+# motors\
 
 # servo
-
+Arm = w.Servo(0) # just put this in for testing
+claw = w.Servo(1) # just putting this in for testing
 # sensors
 largeTopHat = 0
 rangeFinder = 1
