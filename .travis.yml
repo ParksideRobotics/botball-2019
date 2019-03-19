@@ -4,11 +4,9 @@ cache:
   directories:
     - /libwallaby # cache libwallaby
 before_install:
-  - sudo apt-get update # update just in case
-  - sudo apt-get install libzbar-dev libopencv-dev libjpeg-dev python-dev doxygen swig # get dependencies for libwallaby
+  - chmod +x get-deps.sh
+  - ./get-deps.sh
 script:
-  - chmod +x .build/get-deps.sh # Let us run get-deps
-  - .build/get-deps.sh # Download libwallaby
   - rm wallaby.py # Remove our local copy of wallaby.py
   - python .build/add_path.py # Add wallaby.py (from libwallaby) to PATH
   - python main.py # Actually run the code!
