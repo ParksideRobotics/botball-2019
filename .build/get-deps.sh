@@ -8,3 +8,4 @@ cd build
 cmake ..
 make
 sudo make install
+export PATH=$PATH:.

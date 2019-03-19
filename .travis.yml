@@ -12,8 +12,7 @@ script:
   - python main.py # Actually run the code!
 
 after_failure:
-  - cd ../../../../../../ # go to /
-  - cd usr/lib
+  - cd /usr/lib
   - find wallaby.py
 
 after_success:
