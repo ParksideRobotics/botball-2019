@@ -2,7 +2,7 @@ language: python
 python: "2.7"
 cache:
   directories:
-    /libwallaby # cache libwallaby
+    - /libwallaby # cache libwallaby
 before_install:
   - sudo apt-get update # update just in case
   - sudo apt-get install libzbar-dev libopencv-dev libjpeg-dev python-dev doxygen swig # get dependencies for libwallaby
@@ -14,9 +14,7 @@ script:
   - python main.py # Actually run the code!
 
 after_failure:
-  - cd ../../../../../../ # go to /
-  - cd usr/lib
-  - find wallaby.py
+  - find "wallaby.py"
 
 after_success:
   - echo About time!
