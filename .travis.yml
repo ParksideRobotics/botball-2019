@@ -10,4 +10,5 @@ script:
   - chmod +x .build/get-deps.sh
   - .build/get-deps.sh 
   - rm wallaby.py
+  - python .build/add_path.py
   - python main.py
