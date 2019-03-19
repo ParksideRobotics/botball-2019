@@ -1,9 +1,13 @@
 language: python
 python: "2.7"
+cache:
+  directories:
+    /libwallaby
 before_install:
   - sudo apt-get update
   - sudo apt-get install libzbar-dev libopencv-dev libjpeg-dev python-dev doxygen swig
 script:
   - chmod +x .build/get-deps.sh
   - .build/get-deps.sh 
+  - rm wallaby.py
   - python main.py
