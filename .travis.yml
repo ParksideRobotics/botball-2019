@@ -4,5 +4,6 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install libzbar-dev libopencv-dev libjpeg-dev python-dev doxygen swig
 script:
+  - chmod +x .build/get-deps.sh
   - .build/get-deps.sh 
   - python main.py
