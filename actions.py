@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 import wallaby as w
 import const as c
 import drive as d

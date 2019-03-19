@@ -10,8 +10,8 @@ script:
   - chmod +x .build/get-deps.sh # Let us run get-deps
   - .build/get-deps.sh # Download libwallaby
   - rm wallaby.py # Remove our local copy of wallaby.py
-  - python2 .build/add_path.py # Add wallaby.py (from libwallaby) to PATH
-  - python2 main.py # Actually run the code!
+  - python .build/add_path.py # Add wallaby.py (from libwallaby) to PATH
+  - python main.py # Actually run the code!
 
 after_failure:
   - cd ../../../../../../ # go to /
