@@ -28,7 +28,7 @@ def main():
 
     # putting this in so we can play with values
     print 'following black line'
-    a.follow_black_line(900)
+    a.follow_black_line(1030)
      
     print 'moving claw'
     a.move_claw(500) # put this in for testing
