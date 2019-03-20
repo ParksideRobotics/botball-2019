@@ -4,14 +4,21 @@ cache:
   directories:
     - /libwallaby # cache libwallaby
 before_install:
-  - chmod +x .build/get-deps.sh
-  - .build/get-deps.sh
+  - sudo apt-get update # update just in case
+  - sudo apt-get install libzbar-dev libopencv-dev libjpeg-dev python-dev doxygen swig # get dependencies for libwallaby
+  - git clone https://github.com/kipr/libwallaby.git
+  - cd libwallaby && mkdir build && cd build
+  - cmake .. && make
+  - sudo make install
+
 script:
+  - cd home/travis/build/ParksideRobotics/botball-2019 # return to home directory
   - rm wallaby.py # Remove our local copy of wallaby.py
-  - python .build/add_path.py # Add wallaby.py (from libwallaby) to PATH
+  - export PYTHONPATH="{PYTHONPATH}:home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')" # Add wallaby.py (from libwallaby) to PATH
   - python main.py # Actually run the code!
 
 after_failure:
+  - python -c "import sys; print(':'.join(x for x in sys.path if x))"
   - cd /usr/lib
   - find wallaby.py
 
