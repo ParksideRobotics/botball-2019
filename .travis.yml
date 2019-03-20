@@ -12,9 +12,11 @@ before_install:
   - sudo make install
 
 script:
-  - cd home/travis/build/ParksideRobotics/botball-2019 # return to home directory
+  - cd 
+  - cd build/ParksideRobotics/botball-2019 # return to home directory
   - rm wallaby.py # Remove our local copy of wallaby.py
-  - export PYTHONPATH="{PYTHONPATH}:home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')" # Add wallaby.py (from libwallaby) to PATH
+  - export PYTHONPATH="${PYTHONPATH}:home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/"
+  - echo 'export PYTHONPATH="${PYTHONPATH}:home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/"' >> ~/.bashrc # Add wallaby.py (from libwallaby) to PATH
   - python main.py # Actually run the code!
 
 after_failure:
