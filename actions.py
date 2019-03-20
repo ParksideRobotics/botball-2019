@@ -44,11 +44,11 @@ def follow_black_line(dist):
             w.create_drive_direct(0, 100)
             
 
-#def move_claw(tick):   # put this in for testing       
+def move_claw(tick):   # put this in for testing       
      
-    #w.enable_servos()
-    #c.claw.setPosition(100)
-    #c.Arm.setPosition(100)    
+    w.enable_servos()
+    c.claw.setPosition(100)
+    c.Arm.setPosition(100)    
 
         # ssh root@192.168.125.1
         # cd pynther
