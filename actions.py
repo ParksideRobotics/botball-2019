@@ -5,12 +5,10 @@ import drive as d
 import math
 import sys
 
-
 def skip_line(speed):
     d.driveUntilBlack(speed)
     d.driveUntilWhite(speed)
     w.create_stop()
-
 
 def move_out_starbucks():
     """Leave starbucks to get to the main tracking line"""

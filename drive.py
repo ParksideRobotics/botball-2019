@@ -76,7 +76,7 @@ def degreeTurn(speed, degree):
         continue
     w.create_stop()
 
-def degreePivot(speed, degree):
+def degreePivot(speed, degree): 
     w.set_create_total_angle(0)
     if degree < 0:
         w.create_drive_direct(100, -180)
