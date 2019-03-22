@@ -22,8 +22,10 @@ script:
 
 after_failure:
   - python -c "import sys; print(':'.join(x for x in sys.path if x))"
-  - cd /usr/lib
-  - find wallaby.py
+  - cd /
+  - cat /home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/wallaby.py
+  #- cd /usr/lib
+  #- find wallaby.py
 
 after_success:
   - echo About time!

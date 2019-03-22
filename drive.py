@@ -2,7 +2,7 @@
 try:
 	import wallaby as w
 except ImportError:
-	import imp; wallaby = imp.load_source('wallaby', '/home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')
+	import imp; wallaby = imp.load_source('wallaby.w', '/home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')
 	import wallaby as w
 import const as c
 
