@@ -3,45 +3,9 @@ import wallaby as w
 import const as c
 import drive as d
 import camera as x
+import utilities as u
 import math
 import sys
-
-def moveMotor(motor, power, dist): # basically just mtp()
-	w.cmpc(motor)
-	if dist < 0:
-		w.motor(motor, -power)
-	else:
-		w.motor(motor, power)
-	while abs(w.gmpc(motor)) < abs(dist):
-		print w.gmpc(motor)
-		continue
-	print "done!"
-	w.motor(motor, 0) # freeze motor, then shut off
-	w.off(motor)
-
-def moveDegree(motor, power, degree): # set the motor to a degree, like a servo
-	w.cmpc(motor)
-	if degree < 0:
-		w.motor(motor, -power)
-	else:
-		w.motor(motor, power)
-	goal = c.MOTOR_DEG2TICK(degree)
-	while abs(w.gmpc(motor)) < abs(goal):
-		print w.gmpc(motor)
-		continue
-	c.distance_traveled += w.gmpc(motor) # set to actual position, not goal
-	print "Distance Traveled: %d" % c.distance_traveled,
-	print "Goal: %d" % goal
-	print "done!"
-	w.motor(motor, 0) # freeze motor, then shut off
-	w.off(motor)
-
-def isOnLine(sensor, line):
-	return True if w.analog(sensor) > line else False
-
-def resetPosition():
-	moveMotor(c.spinner.port(), 50, c.distance_traveled*-1)
-	c.distance_traveled = 0 # remember to reset, lol
 
 def find_burning_center():
 	c.camera_servo.enable()
@@ -100,7 +64,7 @@ def move_to_cubes():
 	d.degreeTurn(50, int(c.SERVO_TICK2DEG(servo_pos) - 75))
 	c.camera_servo.setPosition(900) # reset camera to default position
 	
-	moveDegree(c.spinner.port(), 50, -90) # set our sweeper to default pos
+	u.moveDegree(c.spinner.port(), 50, -90) # set our sweeper to default pos
 	c.distance_traveled = 0  # clear distance
 
 	at_cubes = False
@@ -121,16 +85,16 @@ def move_to_cubes():
 
 		x.centerX(c.YELLOW, best)
 		print ol,
-		if isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == -1:
+		if u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == -1:
 			ol += 1
 			print "Hitting first line"
-		elif not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 0:
+		elif not u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 0:
 			ol += 1
 			print "Passed First line"
-		elif isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 1:
+		elif u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 1:
 			ol += 1
 			print "Hitting second line"
-		elif not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
+		elif not u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
 			#d.forward(50, 100) # slightly move forward to ensure max performance
 			w.ao()
 			at_cubes = True
@@ -147,18 +111,18 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 	degree = 130 # our starting degree for the turn
 	for i in range(num):
 		if i % 2 == 0:
-			moveDegree(c.spinner.port(), 50, degree*.7)
-			resetPosition()
+			u.moveDegree(c.spinner.port(), 50, degree*.7)
+			u.resetPosition()
 			print "FORWARD %d degrees on cube %d" % (degree*.8, i)
 		elif i % 2 == 1:
-			moveDegree(c.spinner.port(), 50, -degree)
-			resetPosition()
+			u.moveDegree(c.spinner.port(), 50, -degree)
+			u.resetPosition()
 			print "BACKWARD %d degrees on cube %d" % (degree, i)
 		degree -= 20
 
 def move_to_med(): # move to medical center
-	print "Moving towards the "
-	d.degreeTurn(50, (-70, -95)[c.burning_center])
+	print "Moving towards the %s medical center" % (("close", "far")[c.burning_center])
+	d.degreeTurn(50, (-80, -95)[c.burning_center])
 	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
 	print "skipped the line!"
 	d.forward(50, 1000)
