@@ -3,9 +3,9 @@ import wallaby as w
 
 # motors\
 
-#servo
-#Arm = w.Servo(0) # just put this in for testing
-#claw = w.Servo(1) # just putting this in for testing
+#servo 
+arm = w.Servo(0) # just put this in for testing
+claw = w.Servo(1) # just putting this in for testing
 # sensors
 largeTopHat = 0
 rangeFinder = 1
@@ -24,3 +24,5 @@ light = w.Analog(3)  # Not actually on robot yet
 CREATE_GREY = 2500
 CREATE_BLACK = 1800
 CREATE_WHITE = 2800
+
+

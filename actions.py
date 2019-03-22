@@ -10,11 +10,11 @@ def skip_line(speed):
     d.driveUntilWhite(speed)
     w.create_stop()
 
-def move_out_starbucks():
+def move_out_starbox():
     """Leave starbucks to get to the main tracking line"""
     skip_line(100)
     d.driveUntilBlack(100)
-    d.pivotLeft(100,300)
+    d.pivotLeft(100,100)
     # #d.spinLeft(100, 2500)\
 
 def follow_gray_line(dist):
@@ -31,9 +31,9 @@ def follow_gray_line(dist):
         w.create_drive_direct(0, 100)
     w.create_stop()
 
-def move_to_black():
+def turn_to_black():
     d.degreePivot(100, -180)
-
+    
 def follow_black_line(dist):
     w.set_create_distance(0)
     while w.get_create_distance() < dist:
@@ -44,16 +44,32 @@ def follow_black_line(dist):
             w.create_drive_direct(0, 100)
             
 
-def move_claw(tick):   # put this in for testing       
+def move_claw():   # put this in for testing       
      
-    w.enable_servos()
-    c.claw.setPosition(100)
-    c.Arm.setPosition(100)    
+  
+    c.claw.setPosition(0)
+    c.arm.setPosition(2047)
 
-        # ssh root@192.168.125.1
+def shake_down():
+    c.claw.setPosition(0) 
+    w.msleep(500)
+    c.claw.setPosition(1000)
+    w.msleep(500)
+    c.arm.setPosition(200)
+    w.msleep(500)
+    c.arm.setPosition(1600)
+    w.msleep(500)
+
+       
+
+       # ssh root@192.168.125.1
         # cd pynther
         # ./main.py
         # git add .
         # git commit -m "What your code is about, Be specific" 
         # git pull       
     #samadisnumber1
+
+
+
+ 
