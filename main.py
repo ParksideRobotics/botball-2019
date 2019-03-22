@@ -1,4 +1,8 @@
 #!/usr/bin/python
+try:
+	import wallaby as w
+except ImportErrror:
+	import imp; wallaby = imp.load_source('wallaby', '/home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')
 import os
 import sys
 
