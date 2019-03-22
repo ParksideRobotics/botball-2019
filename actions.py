@@ -55,11 +55,11 @@ def find_burning_center():
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 10 < x_pos < 50:
+		if 20 < x_pos < 70:
 			print "Close medical center"
 			c.burning_center = 0
 			break
-		elif 60 < x_pos < 100:
+		elif 80 < x_pos < 120:
 			print "Far medical center"
 			c.burning_center = 1
 			break
@@ -111,6 +111,7 @@ def move_to_cubes():
 		if objects == 0:
 			print "no objects!"
 			if ol == 2:
+				d.forward(50, 100)
 				w.ao()
 				at_cubes = True
 				print "No objects, but passed line!"
@@ -130,6 +131,7 @@ def move_to_cubes():
 			ol += 1
 			print "Hitting second line"
 		elif not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
+			#d.forward(50, 100) # slightly move forward to ensure max performance
 			w.ao()
 			at_cubes = True
 			print "Passed second line"
@@ -140,12 +142,12 @@ def move_to_cubes():
 		print w.get_object_confidence(c.YELLOW, best)
 
 	w.camera_close()
-		
+
 def get_cubes_num(num): # scalable function for getting cubes :))
 	degree = 130 # our starting degree for the turn
 	for i in range(num):
 		if i % 2 == 0:
-			moveDegree(c.spinner.port(), 50, degree*.8)
+			moveDegree(c.spinner.port(), 50, degree*.7)
 			resetPosition()
 			print "FORWARD %d degrees on cube %d" % (degree*.8, i)
 		elif i % 2 == 1:
@@ -155,17 +157,13 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 		degree -= 20
 
 def move_to_med(): # move to medical center
+	print "Moving towards the "
 	d.degreeTurn(50, (-70, -95)[c.burning_center])
-	#while not isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
-	#	c.leftMotor.motor(-50)
-	#	c.rightMotor.motor(50)
-	#while isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
-	#	c.leftMotor.motor(-50)
-	#	c.rightMotor.motor(50)
-	#d.freeze()
-	#d.stop()
-	
-	#d.turnUntilLine(50, d.RIGHT_TURN, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE)
-	d.skipLine(100, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
-	d.forward(100, 1000)
-	d.backward(100, 2000)
+	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
+	print "skipped the line!"
+	d.forward(50, 1000)
+	print "moving forward!"
+	w.ao()
+	w.msleep(100)
+	d.backward(50, 2000)
+	print "moving backward!"
