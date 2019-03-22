@@ -1,13 +1,12 @@
 #!/usr/bin/python
 try:
 	import wallaby as w
-except ImportErrror:
+except ImportError:
 	import imp; wallaby = imp.load_source('wallaby', '/home/travis/build/ParksideRobotics/botball-2019/libwallaby/lib/')
 import os
 import sys
 
 import actions as a
-import wallaby as w
 import const as c
 
 def main():
