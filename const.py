@@ -5,10 +5,11 @@ import wallaby as w
 motorScale = 1
 rightMotor = w.Motor(0)
 leftMotor = w.Motor(1)
-spinner = w.Motor(2) 
+spinner = w.Motor(2)
 
 # servo
 camera_servo = w.Servo(0)
+collection_arm = w.Servo(1)
 
 # sensors
 largeTopHat = w.Analog(0)
@@ -35,8 +36,10 @@ distance_traveled = 0
 # shit for camera
 b = False
 burning_center = -1 # default value is -1, Close is 0, far is 1
+last_direction = -1
 
 # other shit
+# putting shit in const because they are constant
 def DRIVE_DEG2TICK(n):
 	return n*10.388888888888888888888888888889
 def SERVO_TICK2DEG(n):

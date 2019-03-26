@@ -9,7 +9,6 @@ import utilities as u
 
 def main():
 	#u.shake_down()
-
 	#w.wait_for_light(c.light.port())
 	w.shut_down_in(120)
 	#w.msleep(14000) # wait for other robot
@@ -21,7 +20,7 @@ def main():
 	a.move_to_med()
 
 	end_time = w.seconds()
-	print "Program took %d seconds" % (end_time - start_time)
+	print "Program took %f seconds" % (end_time - start_time)
 
 if __name__ == "__main__":
 	sys.stdout = os.fdopen(sys.stdout.fileno(),"w",0)
