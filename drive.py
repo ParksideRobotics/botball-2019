@@ -59,6 +59,13 @@ def driveUntilWhite(speed):
     while w.get_create_lfcliff_amt() < c.CREATE_GREY:
         w.create_drive_straight(speed)
 
+def driveUntilGrey(speed):
+    while w.get_create_lfcliff_amt() > c.CREATE_GREY:
+        w.create_drive_straight(speed)
+
+
+    
+
 def lineFollowUntilTape(line):
     while w.get_create_lfcliff_amt() < line:
         if w.get_create_rfcliff_amt() < line:
@@ -85,3 +92,5 @@ def degreePivot(speed, degree):
     while abs( w.get_create_total_angle() ) < abs( degree*1.15 ):
         continue
     w.create_stop()
+
+

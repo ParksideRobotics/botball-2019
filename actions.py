@@ -13,9 +13,11 @@ def skip_line(speed):
 def move_out_starbox():
     """Leave starbucks to get to the main tracking line"""
     skip_line(100)
-    d.driveUntilBlack(100)
+    d.driveUntilGrey(100)
     d.pivotLeft(100,100)
-    # #d.spinLeft(100, 2500)\
+
+
+   
 
 def follow_gray_line(dist):
     w.set_create_distance(0)
@@ -60,6 +62,8 @@ def shake_down():
     c.arm.setPosition(1600)
     w.msleep(500)
 
+
+
        
 
        # ssh root@192.168.125.1
@@ -68,8 +72,7 @@ def shake_down():
         # git add .
         # git commit -m "What your code is about, Be specific" 
         # git pull       
-    #samadisnumber1
+    #samadisnumber1 98998989
 
 
 
- 

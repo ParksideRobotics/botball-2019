@@ -1,24 +1,21 @@
 #!/usr/bin/python
 import wallaby as w
 import const as c
-
 import drive as d
 import math
 import sys
-
 
 def skip_line(speed):
     d.driveUntilBlack(speed)
     d.driveUntilWhite(speed)
     w.create_stop()
 
-
 def move_out_starbucks():
     """Leave starbucks to get to the main tracking line"""
     skip_line(100)
     d.driveUntilBlack(100)
-    d.pivotLeft(100,250)
-    #d.spinLeft(100, 2500)
+    d.pivotLeft(100,300)
+    # #d.spinLeft(100, 2500)\
 
 def follow_gray_line(dist):
     w.set_create_distance(0)
@@ -35,7 +32,7 @@ def follow_gray_line(dist):
     w.create_stop()
 
 def move_to_black():
-    d.degreePivot(100, -90)
+    d.degreePivot(100, -180)
 
 def follow_black_line(dist):
     w.set_create_distance(0)
@@ -47,11 +44,11 @@ def follow_black_line(dist):
             w.create_drive_direct(0, 100)
             
 
-# def move_claw(tick):   # put this in for testing       
+def move_claw(tick):   # put this in for testing       
      
-    # w.enable_servos()
-    # c.claw.setPosition(100)
-    # c.Arm.setPosition(100)    
+    w.enable_servos()
+    c.claw.setPosition(100)
+    c.Arm.setPosition(100)    
 
         # ssh root@192.168.125.1
         # cd pynther
@@ -59,3 +56,4 @@ def follow_black_line(dist):
         # git add .
         # git commit -m "What your code is about, Be specific" 
         # git pull       
+    #samadisnumber1

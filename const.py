@@ -25,4 +25,9 @@ CREATE_GREY = 2500
 CREATE_BLACK = 1800
 CREATE_WHITE = 2800
 
+# servos
+ARM = 1600
+CLAW = 0
+  
 
+    
