@@ -62,6 +62,11 @@ def shake_down():
     c.arm.setPosition(1600)
     w.msleep(500)
 
+def move_back_on_line():
+    d.pivotRight(100,100)
+    w.msleep(500)
+    d.piviotLeft(100,100)
+
 
 
        

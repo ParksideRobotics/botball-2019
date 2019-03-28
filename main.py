@@ -34,7 +34,8 @@ def main():
     print 'following gray line'
     a.follow_gray_line(350)
 
-    d.pivotRight(100,100)
+    print 'going back on line'
+    a.move_back_on_line()
 
     print 'following gray line'
     a.follow_gray_line(450)
