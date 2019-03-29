@@ -2,8 +2,15 @@
 import wallaby as w
 import drive as d
 import const as c
+import sys
+
+def _init():
+	c.collection_arm.enable()
+	c.camera_servo.enable()
 
 def shake_down():
+	c.camera_servo.setPosition(1550)
+	w.msleep(500)
 	d.forward(50, 1000)
 	print "moving forward"
 	w.msleep(500)
@@ -19,10 +26,13 @@ def shake_down():
 	c.camera_servo.enable()
 	c.camera_servo.setPosition(2047)
 	print "-90 servo"
+	w.msleep(500)
 	c.camera_servo.setPosition(900)
 	print "+90 servo"
+	w.msleep(500)
 	c.camera_servo.setPosition(0)
 	print "+90 servo"
+	w.msleep(500)
 	w.console_clear()
 	print "Not Ready! Awaiting input!"
 	while not w.left_button():

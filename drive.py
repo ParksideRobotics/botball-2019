@@ -23,8 +23,7 @@ def driveMotor(left, right, tick):
 	c.rightMotor.motor(int(right*c.motorScale))
 	while abs(w.gmpc(c.leftMotor.port())) < abs(tick) or abs(w.gmpc(c.rightMotor.port())) < abs(tick):
 		continue
-	c.leftMotor.off()
-	c.rightMotor.off()
+	stop()
 
 def forward(speed, tick):
 	"""Moves robot forward at a speed, and for a certain number of ticks"""
@@ -80,10 +79,8 @@ def degreeTurn(speed, degree): # had to make custom drive because driveMotor() d
 		print w.gmpc(c.rightMotor.port())
 		continue
 	print "Done turning!"
-	c.leftMotor.motor(0)
-	c.rightMotor.motor(0)
-	c.leftMotor.off()
-	c.rightMotor.off()
+	freeze()
+	stop()
 
 def drive_noblock(speed):
 	"""Only turns on drive motors. Does not stop them."""
