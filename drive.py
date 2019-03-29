@@ -86,9 +86,9 @@ def degreeTurn(speed, degree):
 def degreePivot(speed, degree): 
     w.set_create_total_angle(0)
     if degree < 0:
-        w.create_drive_direct(100, -180)
+        w.create_drive_direct(100, -90)
     else:
-        w.create_drive_direct(-180, 100)
+        w.create_drive_direct(-90, 100)
     while abs( w.get_create_total_angle() ) < abs( degree*1.15 ):
         continue
     w.create_stop()

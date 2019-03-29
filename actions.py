@@ -44,34 +44,52 @@ def follow_black_line(dist):
             w.create_drive_direct(100, 0)
         elif w.get_create_rcliff_amt() > c.CREATE_BLACK:
             w.create_drive_direct(0, 100)
+    w.create_stop()
             
 
-def move_claw():   # put this in for testing       
-     
-  
-    c.claw.setPosition(0)
-    c.arm.setPosition(2047)
+def open_claw():
+    c.claw.setPosition(c.CLAW_OPENED)
+    w.msleep(1000)
+
+def drop_arm():
+    c.arm.setPosition(c.ARM_FRONT)
+    w.msleep(1000)  
+
+def close_claw():
+    c.claw.setPosition(c.CLAW_CLOSED)
+    w.msleep(1000)
+def  lift_arm():
+    c.arm.setPosition(c.ARM_BACK)
+    w.msleep(1000)
 
 def shake_down():
-    c.claw.setPosition(0) 
+    c.claw.setPosition(c.CLAW_OPENED) 
     w.msleep(500)
-    c.claw.setPosition(1000)
+    c.claw.setPosition(c.CLAW_CLOSED)
     w.msleep(500)
-    c.arm.setPosition(200)
+    c.claw.setPosition(c.CLAW_OPENED)
     w.msleep(500)
-    c.arm.setPosition(1600)
+    c.arm.setPosition(c.ARM_BACK)
     w.msleep(500)
+    c.arm.setPosition(c.ARM_FRONT)
+    w.msleep(500)
+    c.arm.setPosition(c.ARM_BACK)
+    w.msleep(500)
+    w.create_drive_direct(100,100)
+    w.msleep(500)
+    w.create_drive_direct(-100,-100)
+    w.msleep(500)
+    w.create_stop()
 
 def move_back_on_line():
     d.pivotRight(100,100)
     w.msleep(500)
-    d.piviotLeft(100,100)
+    d.pivotLeft(100,100)
 
 
 
-       
 
-       # ssh root@192.168.125.1
+     # ssh root@192.168.125.1
         # cd pynther
         # ./main.py
         # git add .
