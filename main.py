@@ -19,6 +19,7 @@ def main():
 	a.move_to_cubes() # use camera to move to cubes
 	a.get_cubes_num(5) # get 5 cubes (all cubes)
 	a.move_to_med()
+	a.return_to_med()
 
 	end_time = w.seconds()
 	print "%s medical center" % ("Close", "Far")[c.burning_center]

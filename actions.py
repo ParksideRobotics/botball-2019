@@ -97,6 +97,7 @@ def move_to_cubes():
 				break
 			continue
 		best = x.getGreatest(c.YELLOW)
+		c.last_seen_x = w.get_object_center_x(c.YELLOW, best)
 		x.centerX(c.YELLOW, best)
 		print ol,
 		if u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == -1:
@@ -116,6 +117,12 @@ def move_to_cubes():
 		elif not u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
 			w.ao()
 			at_cubes = True
+			if c.last_direction == 0:
+				d.spinLeft(10, 200) if c.last_seen_x > w.get_camera_width()+5 else d.freeze() 
+				d.forward(10, 200)
+			else:
+				d.spinRight(10, 200) if c.last_seen_x < w.get_camera_width()-5 else d.freeze()
+				d.forward(10, 200)
 			print "Passed second line"
 			break
 		print "Cube:",
@@ -124,14 +131,14 @@ def move_to_cubes():
 	w.camera_close()
 
 def get_cubes_num(num): # scalable function for getting cubes :))
-	degree = 120 # our starting degree for the turn
+	degree = 130 # our starting degree for the turn
 	for i in range(num):
 		if i % 2 == 0:
 			u.moveDegree(c.spinner.port(), 50, degree*.8)
 			u.resetPosition()
 			print "FORWARD %d degrees on cube %d" % (degree*.8, i)
 		elif i % 2 == 1:
-			u.moveDegree(c.spinner.port(), 50, -degree)
+			u.moveDegree(c.spinner.port(), 50, -degree + 10 if i==1 else -degree)
 			u.resetPosition()
 			print "BACKWARD %d degrees on cube %d" % (degree*.9, i)
 		degree -= 20
@@ -147,3 +154,9 @@ def move_to_med(): # move to medical center
 	w.msleep(100)
 	d.backward(50, 2000)
 	print "moving backward!"
+
+def return_to_med():
+	print "Moving back towards the medical center!"
+	d.forward(50, 1000)
+	w.msleep(500)
+	d.backward(50, 1000)
