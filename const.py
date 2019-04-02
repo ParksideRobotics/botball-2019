@@ -2,9 +2,9 @@
 import wallaby as w
 
 # motors\
-
+arm = w.Motor(0)
 #servo 
-arm = w.Servo(0) # just put this in for testing
+
 claw = w.Servo(1) # just putting this in for testing
 # sensors
 largeTopHat = 0
@@ -27,9 +27,9 @@ CREATE_WHITE = 2800
 
 # 
 ARM_BACK = 422
-CLAW_CLOSED = 1130
+CLAW_CLOSED = 1250
 ARM_FRONT = 2047
-CLAW_OPENED = 0 
+CLAW_OPENED = 56
   
 
     

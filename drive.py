@@ -93,4 +93,10 @@ def degreePivot(speed, degree):
         continue
     w.create_stop()
 
-
+def setArmPosition(speed, position):
+    c.arm.clearPositionCounter()
+    c.arm.motor(speed)
+    while abs(w.gmpc(c.arm.port())) < abs(position):
+        continue
+    c.arm.freeze()
+    c.arm.off()

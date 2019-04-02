@@ -8,7 +8,6 @@ import const as c
 import drive as d
 
 
-
 def main():
     if w.create_connect():
         return
