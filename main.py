@@ -21,10 +21,12 @@ def main():
     w.shut_down_in(120)
 
     
-    c.arm.setPosition(2047)
-    c.claw.setPosition(1450)
+    a.drop_arm()
 
-   
+    a.close_claw()
+    w.msleep(500)
+
+    
 
     print 'moving out of the starting box'
     a.move_out_starbox()  # move out of start box

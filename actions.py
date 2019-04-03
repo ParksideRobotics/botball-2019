@@ -52,35 +52,33 @@ def open_claw():
     w.msleep(1000)
 
 def drop_arm():
-    c.arm.setPosition(c.ARM_FRONT)
+    d.setArmPosition(-10 ,c.ARM_FRONT)
     w.msleep(1000)  
 
 def close_claw():
     c.claw.setPosition(c.CLAW_CLOSED)
     w.msleep(1000)
 def  lift_arm():
-    c.arm.setPosition(c.ARM_BACK)
+    d.setArmPosition(10,c.ARM_BACK)
     w.msleep(1000)
 
 def shake_down():
-    c.arm.setPosition(c.ARM_FRONT)
+    d.setArmPosition(10,c.ARM_BACK)
+    w.msleep(500)
+    d.setArmPosition(-10,c.ARM_FRONT)   
     w.msleep(500)
     c.claw.setPosition(c.CLAW_OPENED) 
     w.msleep(500) 
     c.claw.setPosition(c.CLAW_CLOSED)
-    w.msleep(500)
+    w.msleep(500) 
     c.claw.setPosition(c.CLAW_OPENED)
     w.msleep(500)
-    c.arm.setPosition(c.ARM_BACK)
-    w.msleep(500)
-    c.arm.setPosition(c.ARM_FRONT)
-    w.msleep(500)
-    c.arm.setPosition(1481)
-    w.msleep(500)
-    w.create_drive_direct(100,100)
+    d.setArmPosition(10,c.ARM_BACK)
+    w.msleep(500)    
+    w.create_drive_direct(100,100)    
     w.msleep(500)
     w.create_drive_direct(-100,-100)
-    w.msleep(500)
+    w.msleep(500)   
     w.create_stop()
 
 def move_back_on_line():
