@@ -1,9 +1,11 @@
 echo Uploading 0/4
-scp main.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src
+scp main.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin/botball_user_program
 echo Uploading 1/4
-scp drive.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src
+scp drive.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin
 echo Uploading 2/4
-scp const.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src
+scp const.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin
 echo Uploading 3/4
-scp actions.py root@192.168.125.1:~/Documents/KISS/drew/pynther/src
+scp actions.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin
+echo Uploading 4/4
+scp util.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin
 echo UPLOADED ALL
