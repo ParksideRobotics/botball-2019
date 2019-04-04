@@ -10,7 +10,7 @@ import utilities as u
 def main():
 	u._init()
 	u.shake_down()
-	w.wait_for_light(c.light.port())
+	u.wait_4_light()
 	w.shut_down_in(120)
 	start_time = w.seconds()
 

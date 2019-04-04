@@ -25,11 +25,11 @@ def find_burning_center():
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 0 < x_pos < 59:
+		if 0 < x_pos < 90:
 			print "Close medical center"
 			c.burning_center = 0
 			break
-		elif 60 < x_pos < 120:
+		elif 100 < x_pos < 140:
 			print "Far medical center"
 			c.burning_center = 1
 			break
@@ -40,7 +40,6 @@ def turn_to_cubes():
 		return
 	servo_centered = False
 	c.camera_servo.enable()
-	last_seen_x = -1 # setting default value for last seen x
 	while not servo_centered: # first center the 
 		w.camera_update()
 		objects = w.get_object_count(c.YELLOW)
@@ -54,7 +53,6 @@ def turn_to_cubes():
 		print "Cube:",
 		print w.get_object_center_x(c.YELLOW, best),
 		print w.get_object_confidence(c.YELLOW, best)
-		last_seen_x = w.get_object_center_x(c.YELLOW, best) # update our last seen before we center to it, in case we move too much
 		x.centerX_servo(c.YELLOW, best, 10, 50) # first find it with our servo
 		if (w.get_camera_width()/2)-25 < w.get_object_center_x(c.YELLOW, best) < (w.get_camera_width()/2)+10:
 			servo_centered = True
@@ -77,7 +75,7 @@ def move_to_cubes():
 	c.camera_servo.setPosition(900)
 	d.forward(50, 500)
 	w.msleep(250)
-	d.degreeTurn(50, 75)
+	d.degreeTurn(50, 70)
 	u.moveDegree(c.spinner.port(), 50, 90)
 	c.distance_traveled = 0 # reset distance
 	if not w.camera_open():
@@ -118,10 +116,12 @@ def move_to_cubes():
 			w.ao()
 			at_cubes = True
 			if c.last_direction == 0:
-				d.spinLeft(10, 200) if c.last_seen_x > w.get_camera_width()+5 else d.freeze() 
+				if c.last_seen_x < w.get_camera_width() + 5:
+					d.spinLeft(10, 200)
 				d.forward(10, 200)
 			else:
-				d.spinRight(10, 200) if c.last_seen_x < w.get_camera_width()-5 else d.freeze()
+				if c.last_seen_x < w.get_camera_width() - 5:
+					d.spinRight(10, 200)
 				d.forward(10, 200)
 			print "Passed second line"
 			break
@@ -157,6 +157,7 @@ def move_to_med(): # move to medical center
 
 def return_to_med():
 	print "Moving back towards the medical center!"
-	d.forward(50, 1000)
-	w.msleep(500)
-	d.backward(50, 1000)
+	for _ in range(0, 2):
+		d.forward(50, 1000)
+		w.msleep(500)
+		d.backward(50, 1000)

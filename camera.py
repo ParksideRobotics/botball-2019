@@ -19,13 +19,13 @@ def centerX(channel, greatest):
 		c.leftMotor.motor(10)
 		c.rightMotor.motor(30)
 		print w.get_object_center_x(channel, greatest),
-		print "Turning left!"
+		print "Turning left!",
 		c.last_direction = 0
 	elif w.get_object_center_x(channel, greatest) < (w.get_camera_width() / 2.0) + 5:
 		c.rightMotor.motor(10)
 		c.leftMotor.motor(30)
 		print w.get_object_center_x(channel, greatest),
-		print "Turning right!"
+		print "Turning right!",
 		c.last_direction = 1
 
 def centerX_servo(channel, greatest, tolerance, speed): # we can change tolerance
@@ -50,4 +50,4 @@ def scan_servo(channel, last_seen_x):
 	if last_seen_x < w.get_camera_width()/2:
 		c.camera_servo.setPosition(c.camera_servo.position()-1)
 	elif last_seen_x > w.get_camera_width()/2:
-		c.camera.servo.setPosition(c.camera_servo.position()+1)
+		c.camera_servo.setPosition(c.camera_servo.position()+1)

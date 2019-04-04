@@ -47,3 +47,6 @@ def SERVO_TICK2DEG(n):
 	return n/11.3777777778
 def MOTOR_DEG2TICK(n):
 	return n*5.27
+
+# shit for light
+startLightThresh = 0
