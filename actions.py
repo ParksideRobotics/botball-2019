@@ -61,9 +61,10 @@ def close_claw():
 def  lift_arm():
     d.setArmPosition(10,c.ARM_BACK)
     w.msleep(1000)
+    
 
 def shake_down():
-    d.setArmPosition(10,c.ARM_BACK)
+    d.setArmPosition(10, c.ARM_BACK )
     w.msleep(500)
     d.setArmPosition(-10,c.ARM_FRONT)   
     w.msleep(500)
@@ -74,18 +75,28 @@ def shake_down():
     c.claw.setPosition(c.CLAW_OPENED)
     w.msleep(500)
     d.setArmPosition(10,c.ARM_BACK)
-    w.msleep(500)    
+    w.msleep(1000)    
     w.create_drive_direct(100,100)    
     w.msleep(500)
     w.create_drive_direct(-100,-100)
     w.msleep(500)   
     w.create_stop()
+    
 
 def move_back_on_line():
     d.pivotRight(100,100)
-    w.msleep(500)
+    w.msleep(200)
     d.pivotLeft(100,135)
 
+
+def move_to_cylinder():
+    d.degreePivot(100, -90)
+    w.msleep(500)
+    d.degreePivot(100, 90)
+    w.msleep(500)
+    d.setArmPosition(-10 ,c.ARM_FRONT)
+    w.msleep(500)
+    c.claw.setPosition(c.CLAW_OPENED)
 
 
 

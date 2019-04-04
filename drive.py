@@ -98,5 +98,11 @@ def setArmPosition(speed, position):
     c.arm.motor(speed)
     while abs(w.gmpc(c.arm.port())) < abs(position):
         continue
+    c.distance_traveled += w.gmpc(c.arm.port())
     c.arm.freeze()
     c.arm.off()
+
+def reset_position():
+    setArmPosition(50, -c.distance_traveled)
+
+         

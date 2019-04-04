@@ -14,6 +14,8 @@ def main():
     w.create_full()
     w.enable_servos()
     a.shake_down()
+
+
     
 
     print 'waiting for light...'
@@ -39,7 +41,7 @@ def main():
     a.move_back_on_line()
 
     print 'following gray line'
-    a.follow_gray_line(450)
+    a.follow_gray_line(400)
 
     print 'turning around'
     a.turn_to_black()       
@@ -48,8 +50,6 @@ def main():
 
     a.open_claw()
 
-    print 'drop arm'
-    a.drop_arm()
 
     print 'following black line' 
     a.follow_black_line(1400)    
@@ -60,13 +60,17 @@ def main():
     print 'lift arm'
     a.lift_arm()
 
-    d.forward(100,150)
+    d.forward(100,85)
 
-    print 'drop arm'
-    a.drop_arm()
+    d.pivotRight(100, 125)
     
-    print 'opening claw'
-    a.open_claw()
+    d.pivotLeft(100,150)
+
+    
+    c.claw.setPosition(c.CLAW_OPENED)
+
+
+   
 
    
         
