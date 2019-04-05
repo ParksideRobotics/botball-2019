@@ -23,6 +23,7 @@ def main():
 
 	end_time = w.seconds()
 	print "%s medical center" % ("Close", "Far")[c.burning_center]
+	print "%s the cubes" % ("NOT," "YES")[c.can_see]
 	print "Program took %f seconds" % (end_time - start_time)
 	
 if __name__ == "__main__":

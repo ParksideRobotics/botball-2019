@@ -38,6 +38,7 @@ b = False
 burning_center = -1 # default value is -1, Close is 0, far is 1
 last_direction = -1 # default value is -1, left is 0, right is 1
 last_seen_x = -1
+can_see = False
 
 # other shit
 # putting shit in const because they are constant

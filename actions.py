@@ -87,13 +87,22 @@ def move_to_cubes():
 		objects = w.get_object_count(c.YELLOW)
 		if objects == 0:
 			print "no objects!"
+			c.can_see = False
 			if ol == 2:
-				d.forward(50, 100)
+				if c.last_direction == 0:
+					if c.last_seen_x < w.get_camera_width() + 10:
+						d.spinLeft(10, 200)
+					d.forward(10, 200)
+				else:
+					if c.last_seen_x < w.get_camera_width() - 10:
+						d.spinRight(10, 200)
+				d.forward(10, 200)
 				w.ao()
 				at_cubes = True
 				print "No objects, but passed line!"
 				break
 			continue
+		c.can_see = True
 		best = x.getGreatest(c.YELLOW)
 		c.last_seen_x = w.get_object_center_x(c.YELLOW, best)
 		x.centerX(c.YELLOW, best)
@@ -113,14 +122,14 @@ def move_to_cubes():
 			ol += 1
 			print "Hitting second line"
 		elif not u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE) and ol == 2:
-			w.ao()
+			d.stop()
 			at_cubes = True
 			if c.last_direction == 0:
-				if c.last_seen_x < w.get_camera_width() + 5:
+				if c.last_seen_x < w.get_camera_width() + 10:
 					d.spinLeft(10, 200)
 				d.forward(10, 200)
 			else:
-				if c.last_seen_x < w.get_camera_width() - 5:
+				if c.last_seen_x < w.get_camera_width() - 10:
 					d.spinRight(10, 200)
 				d.forward(10, 200)
 			print "Passed second line"

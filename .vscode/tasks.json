@@ -18,7 +18,13 @@
         {
             "label": "upload one file",
             "type": "shell",
-            "command": "scp ${fileBasename} root@192.168.125.1:~/Documents/KISS/drew/pynther/src",
+            "command": "scp ${fileBasename} root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin",
+            "problemMatcher": []
+        },
+        {
+            "label": "upload main",
+            "type": "shell",
+            "command": "scp main.py root@192.168.125.1:~/Documents/KISS/ParksidePython/PythonProjectRunner/bin/botball_user_program",
             "problemMatcher": []
         },
         {
