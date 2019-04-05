@@ -6,53 +6,57 @@ import actions as a
 import wallaby as w
 import const as c
 import drive as d
-
+import util as u
 
 def main():
     if w.create_connect():
         return
     w.create_full()
     w.enable_servos()
+    #a.drop_arm()
     a.shake_down()
 
-
-    
-
     print 'waiting for light...'
-    w.wait_for_light(c.light.port())
+    u.wait_4_light()
     w.shut_down_in(120)
 
+    w.msleep(2500)
     
-    a.drop_arm()
-
+    #a.drop_arm()
     a.close_claw()
-    w.msleep(500)
-
-    
+    #w.msleep(500)
 
     print 'moving out of the starting box'
     a.move_out_starbox()  # move out of start box
     
-
     print 'following gray line'
     a.follow_gray_line(250)
 
     print 'going back on line'
     a.move_back_on_line()
 
-    print 'following gray line'
+    print 'following gray line'          
     a.follow_gray_line(400)
 
     print 'turning around'
     a.turn_to_black()       
 
-    print 'open claw'
-
-    a.open_claw()
-
 
     print 'following black line' 
-    a.follow_black_line(1400)    
+    a.follow_black_line(700)
+
+    w.msleep(500)
+
+    a.close_claw()
+
+    
+    
+    a.open_claw()
+
+    w.msleep(500)
+
+    a.follow_black_line(700)
+    
 
     print 'closing claw'
     a.close_claw()
@@ -60,29 +64,16 @@ def main():
     print 'lift arm'
     a.lift_arm()
 
-    d.forward(100,85)
+    print 'dropping pompoms'
+    a.move_to_cylinder()
 
-    d.pivotRight(100, 125)
-    
-    d.pivotLeft(100,150)
+    print 'moving to water reclemation unit'
+    #a.move_to_utility_zone()
 
-    
-    c.claw.setPosition(c.CLAW_OPENED)
-
-
-   
-
-   
-        
     w.msleep(1000)   
-
-
-
-
+    
     w.create_disconnect()
-
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)
     main()
-

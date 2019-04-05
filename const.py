@@ -27,9 +27,9 @@ CREATE_WHITE = 2800
 
 # 
 ARM_BACK = 500
-CLAW_CLOSED = 1325
-ARM_FRONT = -525
-CLAW_OPENED = 56
+CLAW_CLOSED = 1360
+ARM_FRONT = -490
+CLAW_OPENED = 56             
 
 
 distance_traveled = 0

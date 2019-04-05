@@ -34,7 +34,14 @@ def follow_gray_line(dist):
     w.create_stop()
 
 def turn_to_black():
+    #d.setArmPosition(10, c.ARM_BACK )
+    #c.claw.setPosition(c.CLAW_CLOSED)
+    w.msleep(1000)
     d.degreePivot(100, -180)
+    w.msleep(500)
+    d.setArmPosition(-10, c.ARM_FRONT )
+    c.claw.setPosition(c.CLAW_OPENED)
+
     
 def follow_black_line(dist):
     w.set_create_distance(0)
@@ -52,7 +59,7 @@ def open_claw():
     w.msleep(1000)
 
 def drop_arm():
-    d.setArmPosition(-10 ,c.ARM_FRONT)
+    d.setArmPosition(-25 ,c.ARM_FRONT)
     w.msleep(1000)  
 
 def close_claw():
@@ -64,7 +71,7 @@ def  lift_arm():
     
 
 def shake_down():
-    d.setArmPosition(10, c.ARM_BACK )
+    d.setArmPosition(10,c.ARM_BACK)
     w.msleep(500)
     d.setArmPosition(-10,c.ARM_FRONT)   
     w.msleep(500)
@@ -88,25 +95,35 @@ def move_back_on_line():
     w.msleep(200)
     d.pivotLeft(100,135)
 
-
 def move_to_cylinder():
-    d.degreePivot(100, -90)
-    w.msleep(500)
-    d.degreePivot(100, 90)
-    w.msleep(500)
-    d.setArmPosition(-10 ,c.ARM_FRONT)
+    d.forward(100, 100)
+    d.pivotRight(100, 125)
+    d.setArmPosition(-10, -125)        
+    d.pivotLeft(100,150)
     w.msleep(500)
     c.claw.setPosition(c.CLAW_OPENED)
+    w.msleep(700)
+    d.reset_position()
 
 
 
-     # ssh root@192.168.125.1
-        # cd pynther
-        # ./main.py
-        # git add .
-        # git commit -m "What your code is about, Be specific" 
-        # git pull       
-    #samadisnumber1 98998989
+def move_to_utility_zone():   
+    d.pivotRight(100,210)
+    d.backward(100,200)
+    d.setArmPosition(-10,c.ARM_FRONT)
+    d.forward(100,85)
+    d.pivotRight(100,400)
+    d.forward(100,1000)
+
+
+
+# ssh root@192.168.125.1
+# cd pynther
+# ./main.py
+# git add .
+# git commit -m "What your code is about, Be specific" 
+# git pull       
+    
 
 
 

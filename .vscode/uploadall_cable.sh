@@ -6,4 +6,6 @@ echo Uploading 2/4
 scp const.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
 echo Uploading 3/4
 scp actions.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
+echo Uploading 4/4
+scp util.py root@192.168.124.1:~/Documents/KISS/drew/pynther/src
 echo UPLOADED ALL
