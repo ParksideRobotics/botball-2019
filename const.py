@@ -5,7 +5,7 @@ import wallaby as w
 arm = w.Motor(0)
 #servo 
 
-claw = w.Servo(1) # just putting this in for testing
+claw = w.Servo(1) 
 # sensors
 largeTopHat = 0
 rangeFinder = 1
@@ -27,9 +27,9 @@ CREATE_WHITE = 2800
 
 # 
 ARM_BACK = 500
-CLAW_CLOSED = 1360
+CLAW_CLOSED = 1900 
 ARM_FRONT = -490
-CLAW_OPENED = 56             
+CLAW_OPENED = 50
 
 
 distance_traveled = 0

@@ -59,16 +59,16 @@ def main():
     
 
     print 'closing claw'
-    a.close_claw()
-
     print 'lift arm'
-    a.lift_arm()
+    a.pick_up_arm_and_close_claw()
+
+
 
     print 'dropping pompoms'
     a.move_to_cylinder()
 
-    print 'moving to water reclemation unit'
-    #a.move_to_utility_zone()
+    print 'moving utility zone'
+    a.move_to_utility_zone()
 
     w.msleep(1000)   
     

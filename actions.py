@@ -96,9 +96,10 @@ def move_back_on_line():
     d.pivotLeft(100,135)
 
 def move_to_cylinder():
+    w.msleep(500)
     d.forward(100, 100)
     d.pivotRight(100, 125)
-    d.setArmPosition(-10, -125)        
+    d.setArmPosition(-10, -200)        
     d.pivotLeft(100,150)
     w.msleep(500)
     c.claw.setPosition(c.CLAW_OPENED)
@@ -108,14 +109,18 @@ def move_to_cylinder():
 
 
 def move_to_utility_zone():   
-    d.pivotRight(100,210)
-    d.backward(100,200)
+    d.spinLeft(100,25)
+    d.forward(100,200)
     d.setArmPosition(-10,c.ARM_FRONT)
-    d.forward(100,85)
-    d.pivotRight(100,400)
+    d.spinLeft(100,25)
     d.forward(100,1000)
 
 
+
+def pick_up_arm_and_close_claw():
+    c.claw.setPosition(c.CLAW_CLOSED)
+    w.msleep(700)
+    d.setArmPosition(10,c.ARM_FRONT)
 
 # ssh root@192.168.125.1
 # cd pynther
