@@ -1,7 +1,7 @@
 {
     "files.eol": "\n",
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": false,
+    "python.linting.enabled": true,
     "python.pythonPath": "C:\\Users\\Abdul Samad\\AppData\\Local\\Programs\\Python\\Python37-32",
     "editor.insertSpaces": false,
 }

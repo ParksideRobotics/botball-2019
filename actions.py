@@ -104,15 +104,15 @@ def move_to_cylinder():
     w.msleep(500)
     c.claw.setPosition(c.CLAW_OPENED)
     w.msleep(700)
-    d.reset_position()
+    d.setArmPosition(10,c.ARM_BACK)
 
 
 
 def move_to_utility_zone():   
-    d.spinLeft(100,25)
-    d.forward(100,200)
+    d.pivotLeft(100,25)
+    d.forward(100,60)
     d.setArmPosition(-10,c.ARM_FRONT)
-    d.spinLeft(100,25)
+    d.pivotLeft(100,25)
     d.forward(100,1000)
 
 
@@ -122,13 +122,15 @@ def pick_up_arm_and_close_claw():
     w.msleep(700)
     d.setArmPosition(10,c.ARM_FRONT)
 
+
+def close_claw_open_claw():
+    c.claw.setPosition(c.CLAW_CLOSED)
+    w.msleep(1000)
+    c.claw.setPosition(c.CLAW_OPENED)
+ 
 # ssh root@192.168.125.1
 # cd pynther
 # ./main.py
 # git add .
 # git commit -m "What your code is about, Be specific" 
 # git pull       
-    
-
-
-

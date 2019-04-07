@@ -18,7 +18,7 @@ def main():
 
     print 'waiting for light...'
     u.wait_4_light()
-    w.shut_down_in(120)
+    w.shut_down_in(110)
 
     w.msleep(2500)
     

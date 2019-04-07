@@ -17,7 +17,7 @@ def calibrate(port):
         pass
     lightOn = w.analog(port)
     print("On value =", lightOn)
-    if lightOn > 3000:
+    if lightOn > 4000:
         print("Bad calibration")
         return False
     w.msleep(1000)
@@ -28,12 +28,12 @@ def calibrate(port):
         pass
     lightOff = w.analog(port)
     print("Off value =", lightOff)
-    if lightOff < 3000:
+    if lightOff < 1:
         print("Bad calibration")
         return False
 
 
-    if (lightOff - lightOn) < 1000:
+    if (lightOff - lightOn) < 1:
         print("Bad calibration")
         return False
     startLightThresh = (lightOff + lightOn) / 2
