@@ -2,6 +2,7 @@
 import wallaby as w
 import drive as d
 import const as c
+import camera as x
 import sys
 
 def _init():
@@ -34,6 +35,10 @@ def shake_down():
 	c.camera_servo.setPosition(0)
 	print "+90 servo"
 	w.msleep(500)
+	d.driveUntilBlack(50)
+	print "checking tophat!"
+	w.msleep(500)
+	print "testing the camera and burning centers!"
 	w.console_clear()
 	print "Not Ready! Awaiting input!"
 	while not w.left_button():
@@ -101,15 +106,37 @@ def calibrate(port):
         pass
     lightOff = w.analog(port)
     print("Off value =", lightOff)
-    if lightOff < 4000:
+    if lightOff < 1000:
         print("Bad calibration")
         return False
 
 
-    if (lightOff - lightOn) < 1000:
+    if (lightOff - lightOn) < 1:
         print("Bad calibration")
         return False
     startLightThresh = (lightOff + lightOn) / 2
     print("Good calibration! ", startLightThresh)
     print('{} {} {}'.format(lightOff, lightOn, startLightThresh))
     return startLightThresh
+
+def burning_center_test():
+	c.camera_servo.enable()
+	c.camera_servo.setPosition(1400) # set the servo so It can see both centers, but not cubes
+	c.collection_arm.setPosition(270) # set the arm to so it is open
+	d.forward(50, 650)
+	d.spinLeft(50, 100)
+	if not w.camera_open():
+		return
+	while not w.right_button():
+		w.camera_update()
+		best = x.getGreatest(c.BURNING)
+		if w.get_object_confidence(c.BURNING, best) < 0.2:
+			continue
+		x_pos = w.get_object_center_x(c.BURNING, best)
+		print x_pos
+		if 0 < x_pos < 79:
+			print "Close medical center"
+			break
+		elif 80 < x_pos < 140:
+			print "Far medical center"
+			break

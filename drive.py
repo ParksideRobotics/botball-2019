@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import wallaby as w
 import const as c
+import utilities as u
 
 RIGHT_TURN = 0
 LEFT_TURN = 1
@@ -40,7 +41,7 @@ def spinRight(speed, tick):
 
 def veerLeft(speed, tick, o):
 	driveMotor((speed*-1)-o, speed, tick)
-	
+
 def veerRight(speed, tick, o):
 	driveMotor(speed, (speed*-1)-o, tick)
 	
@@ -51,11 +52,14 @@ def pivotLeft(speed, tick):
 	driveMotor(speed, 0, tick)
 
 def radiusTurn(speed, radius, tick):
-	driveMotor(speed, int((radius / (radius+5.0)*speed), tick))
+	driveMotor(speed, int((radius / (radius+5.0)*speed)), tick)
 
 def driveUntilBlack(speed):
-	while w.analog(c.largeTopHat) < c.LARGE_TOPHAT_LINE:
-		driveMotor(speed, speed, 1)
+	c.leftMotor.motor(speed)
+	c.rightMotor.motor(speed)
+	while not u.isOnLine(c.largeTopHat.port(), c.LARGE_TOPHAT_LINE):
+		continue
+	stop()
 
 def lineFollowUntilTape():
 	while c.smallTopHat.value() < c.SMALL_TOPHAT_LINE:
@@ -99,7 +103,7 @@ def skipLine(speed, sensor, line, lines):
 	Sensor: Which tophat to use\n
 	Line: Which line to use\n
 	Lines: how many we want to skip"""
-	for i in range(0, lines):
+	for _ in range(0, lines):
 		while w.analog(sensor) > line: # is on line
 			drive_noblock(speed)
 		while w.analog(sensor) < line: # isnt on line

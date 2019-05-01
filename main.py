@@ -11,7 +11,7 @@ def main():
 	u._init()
 	u.shake_down()
 	u.wait_4_light()
-	w.shut_down_in(120)
+	w.shut_down_in(110)
 	start_time = w.seconds()
 
 	a.move_out_startbox()

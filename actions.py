@@ -10,7 +10,7 @@ import wallaby as w
 
 def move_out_startbox():
 	c.camera_servo.enable()
-	c.camera_servo.setPosition(1500) # set the servo so It can see both centers, but not cubes
+	c.camera_servo.setPosition(1400) # set the servo so It can see both centers, but not cubes
 	c.collection_arm.setPosition(270) # set the arm to so it is open
 	d.forward(50, 650)
 	d.spinLeft(50, 100)
@@ -21,15 +21,15 @@ def find_burning_center():
 	while c.burning_center == -1:
 		w.camera_update()
 		best = x.getGreatest(c.BURNING)
-		if w.get_object_confidence(c.BURNING, best) < 0.5:
+		if w.get_object_confidence(c.BURNING, best) < 0.2:
 			continue
 		x_pos = w.get_object_center_x(c.BURNING, best)
 		print x_pos
-		if 0 < x_pos < 90:
+		if 0 < x_pos < 79:
 			print "Close medical center"
 			c.burning_center = 0
 			break
-		elif 100 < x_pos < 140:
+		elif 80 < x_pos < 140:
 			print "Far medical center"
 			c.burning_center = 1
 			break
@@ -90,11 +90,11 @@ def move_to_cubes():
 			c.can_see = False
 			if ol == 2:
 				if c.last_direction == 0:
-					if c.last_seen_x < w.get_camera_width() + 10:
+					if c.last_seen_x < w.get_camera_width() + 5:
 						d.spinLeft(10, 200)
 					d.forward(10, 200)
 				else:
-					if c.last_seen_x < w.get_camera_width() - 10:
+					if c.last_seen_x < w.get_camera_width() - 5:
 						d.spinRight(10, 200)
 				d.forward(10, 200)
 				w.ao()
@@ -155,7 +155,7 @@ def get_cubes_num(num): # scalable function for getting cubes :))
 def move_to_med(): # move to medical center
 	print "Moving towards the %s medical center" % (("close", "far")[c.burning_center])
 	d.degreeTurn(50, ((-80,-70)[c.last_direction], (-95,-85)[c.last_direction])[c.burning_center])
-	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 2)[c.burning_center])
+	d.skipLine(50, c.largeTopHat.port(), c.LARGE_TOPHAT_LINE, (1, 3)[c.burning_center])
 	print "skipped the line!"
 	d.forward(50, 1000)
 	print "moving forward!"
